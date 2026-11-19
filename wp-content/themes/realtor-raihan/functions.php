@@ -9,7 +9,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'RR_VERSION', '1.0.21' );
+define( 'RR_VERSION', '1.0.22' );
 define( 'RR_DIR', get_template_directory() );
 define( 'RR_URI', get_template_directory_uri() );
 
@@ -52,7 +52,10 @@ function rr_assets() {
 	if ( is_page_template( 'page-templates/about.php' ) ) {
 		$css['rr-about'] = 'about.css';
 	}
-	if ( is_page_template( 'page-templates/contact.php' ) ) {
+	$is_contact = is_page( 'contact' )
+		|| is_page_template( 'page-templates/contact.php' )
+		|| is_page_template( 'page-contact.php' );
+	if ( $is_contact ) {
 		$css['rr-home-contact'] = 'home-11-contact.css';
 		$css['rr-contact']      = 'contact.css';
 	}
@@ -93,7 +96,7 @@ function rr_assets() {
 	if ( is_page_template( 'page-templates/about.php' ) ) {
 		wp_enqueue_script( 'rr-about', RR_URI . '/assets/js/about.js', array(), RR_VERSION, true );
 	}
-	if ( is_page_template( 'page-templates/contact.php' ) ) {
+	if ( $is_contact ) {
 		wp_enqueue_script( 'rr-contact-js', RR_URI . '/assets/js/11-contact.js', array(), RR_VERSION, true );
 	}
 	if ( is_home() || is_archive() || is_search() ) {
@@ -119,6 +122,10 @@ function rr_body_class( $classes ) {
 	$classes[] = 'rr-wp';
 	if ( is_front_page() ) {
 		$classes[] = 'rr-home';
+	}
+	if ( is_page( 'contact' ) || is_page_template( 'page-templates/contact.php' ) || is_page_template( 'page-contact.php' ) ) {
+		$classes[] = 'page-contact';
+		$classes[] = 'page-template-contact';
 	}
 	return $classes;
 }
