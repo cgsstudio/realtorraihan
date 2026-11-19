@@ -42,13 +42,17 @@ $icons = array(
 
     <div class="sv__bento">
       <?php
+      $total_rows = count( $rows );
       foreach ( $rows as $i => $row ) :
           $featured = ! empty( $row['featured'] ) && '0' !== (string) $row['featured'];
+          $is_wide  = ( ! empty( $row['wide'] ) && '0' !== (string) $row['wide'] ) || ( 8 === $total_rows && 7 === $i );
           $url      = ! empty( $row['url'] ) ? $row['url'] : rr_anchor( 'contact' );
           $icon_key = isset( $icons[ $row['icon'] ] ) ? $row['icon'] : 'sell';
           $classes  = 'bento';
           if ( $featured ) {
               $classes .= ' bento--feat';
+          } elseif ( $is_wide ) {
+              $classes .= ' bento--wide';
           }
           ?>
           <a class="<?php echo esc_attr( $classes ); ?>" href="<?php echo esc_url( $url ); ?>">
