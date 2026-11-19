@@ -1,20 +1,13 @@
 /* shared chrome: fixed bar, mobile menu, footer reveal, back-to-top FAB.
    Lives on every page so the header and footer behave the same way everywhere. */
 (function(){
-  /* ---- fixed bar: transparent over a hero photo, navy glass once scrolled.
-     --barh keeps hero padding in sync with the real bar height. ---- */
+  /* ---- fixed bar: transparent over a hero photo, navy glass once scrolled. ---- */
   var bar = document.querySelector('.hero__bar');
   if (bar) {
-    var syncBar = function(){
-      document.documentElement.style.setProperty('--barh', bar.offsetHeight + 'px');
-    };
     var onScrollBar = function(){
       bar.classList.toggle('is-stuck', window.scrollY > 12);
-      syncBar();
     };
     window.addEventListener('scroll', onScrollBar, { passive:true });
-    window.addEventListener('resize', syncBar, { passive:true });
-    syncBar();
     onScrollBar();
   }
 

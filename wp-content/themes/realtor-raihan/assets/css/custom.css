@@ -330,6 +330,20 @@
   box-shadow: 0 6px 18px -4px rgba(0, 0, 0, 0.18) !important;
 }
 
+:root {
+  --barh: 88px;
+}
+@media (max-width: 1080px) {
+  :root {
+    --barh: 70px;
+  }
+}
+
+.brand__mark,
+.brand img.brand__mark {
+  aspect-ratio: 34 / 36 !important;
+}
+
 /* ============================================================
    RESPONSIVE HEADER & MOBILE MENU
    ============================================================ */

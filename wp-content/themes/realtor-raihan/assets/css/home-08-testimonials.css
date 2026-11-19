@@ -100,7 +100,8 @@
   font-size:clamp(.98rem,1.28vw,1.16rem);line-height:1.6;color:#fff;
   letter-spacing:-.006em}
 .tcard[data-pos="0"] blockquote{color:#fff}
-.tcard figcaption{display:flex;align-items:center;gap:12px;
+.tcard figcaption,
+.tcard__foot{display:flex;align-items:center;gap:12px;
   padding-top:clamp(12px,1.4vw,16px);
   border-top:1px solid rgba(255,255,255,.12)}
 .tcard__av{width:38px;height:38px;border-radius:50%;flex:none;display:grid;

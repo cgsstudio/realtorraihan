@@ -15,7 +15,7 @@
   color: #fff;
   overflow: visible;
   isolation: isolate;
-  padding-top: var(--barh, 0px);
+  padding-top: var(--barh, 88px);
 }
 
 /* ---------- background slideshow, heavily navy-washed ---------- */

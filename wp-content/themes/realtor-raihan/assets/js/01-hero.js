@@ -1,19 +1,12 @@
 /* 01-hero */
 (function(){
-  /* fixed bar: swap to the glass plate as soon as the page moves, and keep the
-     hero padded by exactly the bar's height so nothing hides underneath it */
+  /* fixed bar: swap to the glass plate as soon as the page moves */
   var bar = document.querySelector('.hero__bar');
   if (bar) {
-    var syncBar = function(){
-      document.documentElement.style.setProperty('--barh', bar.offsetHeight + 'px');
-    };
     var onScroll = function(){
       bar.classList.toggle('is-stuck', window.scrollY > 12);
-      syncBar();
     };
     window.addEventListener('scroll', onScroll, { passive:true });
-    window.addEventListener('resize', syncBar, { passive:true });
-    syncBar();
     onScroll();
   }
 
