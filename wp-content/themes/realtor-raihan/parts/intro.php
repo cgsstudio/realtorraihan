@@ -73,7 +73,7 @@ $founder = rr_img( get_theme_mod( 'rr_founder_img', get_option( 'rr_home_intro_i
         <?php foreach ( $stats as $stat ) : ?>
           <li class="stat2">
             <span class="stat2__num"><?php echo esc_html( $stat[0] ); ?></span>
-            <span class="stat2__label"><b><?php echo esc_html( $stat[1] ); ?></b><span><?php echo esc_html( $stat[2] ); ?></span></span>
+            <span class="stat2__label"><b><?php echo esc_html( $stat[1] ); ?></b><span><?php echo nl2br( esc_html( str_replace( '\n', "\n", $stat[2] ) ) ); ?></span></span>
           </li>
         <?php endforeach; ?>
       </ul>

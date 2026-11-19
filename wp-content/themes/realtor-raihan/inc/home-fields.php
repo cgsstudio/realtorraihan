@@ -49,10 +49,10 @@ function rr_home_defaults() {
 		'intro_badge_t' => 'YEARS IN DUBAI PROPERTY',
 		'intro_cap_b'   => 'Raihan Shaikh',
 		'intro_cap_s'   => 'Founder & Property Consultant',
-		'stat1_n' => '5+', 'stat1_t' => 'Years of Experience', 'stat1_s' => 'Hands-on knowledge of the Dubai market',
-		'stat2_n' => '100+', 'stat2_t' => 'Satisfied Clients', 'stat2_s' => 'Buyers, sellers, landlords, and investors',
-		'stat3_n' => '10', 'stat3_t' => 'Locations Covered', 'stat3_s' => 'Popular communities across Dubai',
-		'stat4_n' => '24/7', 'stat4_t' => 'Continuous Support & Guidance', 'stat4_s' => 'Help before, during, and after the deal',
+		'stat1_n' => '5+', 'stat1_t' => 'Years of Experience', 'stat1_s' => "Hands-on knowledge of\nthe Dubai market",
+		'stat2_n' => '100+', 'stat2_t' => 'Satisfied Clients', 'stat2_s' => "Buyers, sellers, landlords,\nand investors",
+		'stat3_n' => '10', 'stat3_t' => 'Locations Covered', 'stat3_s' => "Popular communities\nacross Dubai",
+		'stat4_n' => '24/7', 'stat4_t' => 'Continuous Support & Guidance', 'stat4_s' => "Help before, during,\nand after the deal",
 
 		/* ------------- why invest ------------- */
 		'wi_tag'   => 'Why Invest',
