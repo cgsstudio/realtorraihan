@@ -284,13 +284,13 @@ a {
 .pill::after {
   content: "";
   position: absolute;
-  inset: -1.5px;
+  inset: -3.5px;
   border-radius: inherit;
   pointer-events: none;
   border: 1.5px solid currentColor;
   opacity: 0;
   transform: scale(.94);
-  transition: opacity .35s var(--ease-out), transform .35s var(--ease-out);
+  transition: opacity .3s var(--ease-out), transform .3s var(--ease-out);
 }
 
 .pill:hover::after,
@@ -306,7 +306,7 @@ a {
 
 .pill svg {
   flex: none;
-  transition: transform .46s var(--ease-out)
+  transition: transform .35s var(--ease-out)
 }
 
 .pill:hover svg {
@@ -314,7 +314,7 @@ a {
 }
 
 .pill:active {
-  transform: translateY(0) scale(.975)
+  transform: translateY(0) scale(.98)
 }
 
 .pill--gold {
@@ -322,10 +322,14 @@ a {
   color: var(--gold-ink)
 }
 
+.pill--gold::after {
+  border-color: var(--gold);
+}
+
 .pill--gold:hover {
-  background: var(--gold-lt);
-  transform: translateY(-3px);
-  box-shadow: 0 16px 34px -8px rgba(200, 163, 77, .45)
+  background: var(--gold);
+  transform: translateY(-2px);
+  box-shadow: none;
 }
 
 .pill--navy {
@@ -333,10 +337,14 @@ a {
   color: #fff
 }
 
+.pill--navy::after {
+  border-color: var(--navy);
+}
+
 .pill--navy:hover {
-  background: var(--navy-deep);
-  transform: translateY(-3px);
-  box-shadow: 0 16px 34px -12px rgba(11, 31, 58, .55)
+  background: var(--navy);
+  transform: translateY(-2px);
+  box-shadow: none;
 }
 
 .pill--cream {
@@ -344,9 +352,14 @@ a {
   color: var(--ink)
 }
 
+.pill--cream::after {
+  border-color: #fff;
+}
+
 .pill--cream:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 16px 34px -10px rgba(0, 0, 0, .28)
+  background: var(--cream);
+  transform: translateY(-2px);
+  box-shadow: none;
 }
 
 .pill--outline {
@@ -354,9 +367,13 @@ a {
   color: var(--ink)
 }
 
-.pill--outline:hover {
+.pill--outline::after {
   border-color: var(--navy);
-  transform: translateY(-3px)
+}
+
+.pill--outline:hover {
+  transform: translateY(-2px);
+  box-shadow: none;
 }
 
 .pill--ghost {
@@ -364,10 +381,13 @@ a {
   color: #fff
 }
 
-.pill--ghost:hover {
-  background: rgba(255, 255, 255, .12);
+.pill--ghost::after {
   border-color: var(--gold);
-  transform: translateY(-3px)
+}
+
+.pill--ghost:hover {
+  transform: translateY(-2px);
+  box-shadow: none;
 }
 
 .pill--gold-line {
@@ -375,10 +395,13 @@ a {
   color: var(--gold)
 }
 
+.pill--gold-line::after {
+  border-color: var(--gold);
+}
+
 .pill--gold-line:hover {
-  background: var(--gold);
-  color: var(--gold-ink);
-  transform: translateY(-3px)
+  transform: translateY(-2px);
+  box-shadow: none;
 }
 
 .pill--sm {

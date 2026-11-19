@@ -138,8 +138,9 @@
   box-shadow:0 14px 30px -16px rgba(200,163,77,.9)}
 
 .ct__submit{position:relative;overflow:visible;isolation:isolate}
-.ct__submit::after{content:"";position:absolute;inset:-1.5px;border-radius:inherit;pointer-events:none;border:1.5px solid currentColor;opacity:0;transform:scale(.94);transition:opacity .35s var(--ease-out),transform .35s var(--ease-out)}
+.ct__submit::after{content:"";position:absolute;inset:-3.5px;border-radius:inherit;pointer-events:none;border:1.5px solid var(--gold);opacity:0;transform:scale(.94);transition:opacity .3s var(--ease-out),transform .3s var(--ease-out)}
 .ct__submit:hover::after{opacity:1;transform:scale(1)}
+.ct__submit:hover{background:var(--gold);transform:translateY(-2px);box-shadow:none}
 .ct__submit:hover svg{transform:translate(3px,-3px) scale(1.08)}
 .ct__submit:active{transform:translateY(0) scale(.975)}
 .ct__submit:disabled{opacity:.6;cursor:default;transform:none;box-shadow:none}
