@@ -280,23 +280,10 @@ a {
     box-shadow .42s var(--ease-out);
 }
 
-/* every pill gets an animated border that scales in and stays on hover */
+/* remove floating outer ring border */
 .pill::after {
-  content: "";
-  position: absolute;
-  inset: -3.5px;
-  border-radius: inherit;
-  pointer-events: none;
-  border: 1.5px solid currentColor;
-  opacity: 0;
-  transform: scale(.94);
-  transition: opacity .3s var(--ease-out), transform .3s var(--ease-out);
-}
-
-.pill:hover::after,
-.pill:focus-visible::after {
-  opacity: 1;
-  transform: scale(1);
+  display: none;
+  content: none;
 }
 
 .pill:focus-visible {
@@ -306,11 +293,11 @@ a {
 
 .pill svg {
   flex: none;
-  transition: transform .35s var(--ease-out)
+  transition: transform .28s var(--ease-out)
 }
 
 .pill:hover svg {
-  transform: translate(3px, -3px) scale(1.08)
+  transform: translate(3px, -3px) scale(1.06)
 }
 
 .pill:active {
@@ -319,89 +306,79 @@ a {
 
 .pill--gold {
   background: var(--gold);
-  color: var(--gold-ink)
-}
-
-.pill--gold::after {
-  border-color: var(--gold);
+  color: var(--gold-ink);
+  border: 1.5px solid var(--gold);
+  box-shadow: 0 4px 12px -2px rgba(0, 0, 0, 0.18);
 }
 
 .pill--gold:hover {
   background: var(--gold);
   transform: translateY(-2px);
-  box-shadow: none;
+  box-shadow: 0 8px 22px -4px rgba(0, 0, 0, 0.28);
 }
 
 .pill--navy {
   background: var(--navy);
-  color: #fff
-}
-
-.pill--navy::after {
-  border-color: var(--navy);
+  color: #fff;
+  border: 1.5px solid var(--navy);
+  box-shadow: 0 4px 12px -2px rgba(0, 0, 0, 0.18);
 }
 
 .pill--navy:hover {
   background: var(--navy);
   transform: translateY(-2px);
-  box-shadow: none;
+  box-shadow: 0 8px 22px -4px rgba(0, 0, 0, 0.28);
 }
 
 .pill--cream {
   background: var(--cream);
-  color: var(--ink)
-}
-
-.pill--cream::after {
-  border-color: #fff;
+  color: var(--ink);
+  border: 1.5px solid var(--cream);
+  box-shadow: 0 4px 12px -2px rgba(0, 0, 0, 0.15);
 }
 
 .pill--cream:hover {
   background: var(--cream);
   transform: translateY(-2px);
-  box-shadow: none;
+  box-shadow: 0 8px 22px -4px rgba(0, 0, 0, 0.22);
 }
 
 .pill--outline {
-  border-color: var(--line-navy);
-  color: var(--ink)
-}
-
-.pill--outline::after {
-  border-color: var(--navy);
+  border: 1.5px solid var(--line-navy);
+  color: var(--ink);
+  box-shadow: none;
 }
 
 .pill--outline:hover {
+  border-color: var(--navy);
+  color: var(--navy);
   transform: translateY(-2px);
-  box-shadow: none;
+  box-shadow: 0 6px 18px -4px rgba(0, 0, 0, 0.18);
 }
 
 .pill--ghost {
-  border-color: rgba(255, 255, 255, .28);
-  color: #fff
-}
-
-.pill--ghost::after {
-  border-color: var(--gold);
+  border: 1.5px solid rgba(255, 255, 255, .32);
+  color: #fff;
+  box-shadow: none;
 }
 
 .pill--ghost:hover {
+  border-color: rgba(255, 255, 255, .65);
   transform: translateY(-2px);
-  box-shadow: none;
+  box-shadow: 0 6px 18px -4px rgba(0, 0, 0, 0.25);
 }
 
 .pill--gold-line {
-  border-color: var(--gold);
-  color: var(--gold)
-}
-
-.pill--gold-line::after {
-  border-color: var(--gold);
+  border: 1.5px solid var(--gold);
+  color: var(--gold);
+  box-shadow: none;
 }
 
 .pill--gold-line:hover {
+  background: transparent;
+  color: var(--gold);
   transform: translateY(-2px);
-  box-shadow: none;
+  box-shadow: 0 6px 18px -4px rgba(0, 0, 0, 0.25);
 }
 
 .pill--sm {

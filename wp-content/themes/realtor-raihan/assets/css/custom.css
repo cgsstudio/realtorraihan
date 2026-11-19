@@ -7,7 +7,7 @@
    Nothing breaks if this file is empty.
    ============================================================ */
 
-:root{
+:root {
   /* ----- brand colours ----- */
   /* --navy:      #0B1F3A;   main dark colour (header, dark sections) */
   /* --navy-card: #12294B;   raised cards on navy                      */
@@ -26,15 +26,15 @@
 }
 
 /* 8th Service Card Wide Layout (Second Screenshot design) */
-.sv__bento > .bento--wide,
-.sv__bento > .bento:last-child,
-.sv__bento > .bento:nth-child(8) {
+.sv__bento>.bento--wide,
+.sv__bento>.bento:last-child,
+.sv__bento>.bento:nth-child(8) {
   grid-column: span 2 !important;
 }
 
-.sv__bento > .bento--wide .bento__body,
-.sv__bento > .bento:last-child .bento__body,
-.sv__bento > .bento:nth-child(8) .bento__body {
+.sv__bento>.bento--wide .bento__body,
+.sv__bento>.bento:last-child .bento__body,
+.sv__bento>.bento:nth-child(8) .bento__body {
   display: grid !important;
   grid-template-columns: auto minmax(0, 1fr) !important;
   column-gap: clamp(12px, 1.2vw, 16px) !important;
@@ -42,31 +42,32 @@
 }
 
 /* Ensure all cards have uniform top spacing */
-.sv__bento > .bento:not(.bento--feat) .bento__body {
+.sv__bento>.bento:not(.bento--feat) .bento__body {
   margin-top: 0 !important;
 }
-.sv__bento > .bento--feat .bento__body {
+
+.sv__bento>.bento--feat .bento__body {
   margin-top: auto !important;
 }
 
-.sv__bento > .bento--wide .bento__ico,
-.sv__bento > .bento:last-child .bento__ico,
-.sv__bento > .bento:nth-child(8) .bento__ico {
+.sv__bento>.bento--wide .bento__ico,
+.sv__bento>.bento:last-child .bento__ico,
+.sv__bento>.bento:nth-child(8) .bento__ico {
   grid-column: 1 !important;
   grid-row: 1 !important;
 }
 
-.sv__bento > .bento--wide .bento__body > h3,
-.sv__bento > .bento:last-child .bento__body > h3,
-.sv__bento > .bento:nth-child(8) .bento__body > h3 {
+.sv__bento>.bento--wide .bento__body>h3,
+.sv__bento>.bento:last-child .bento__body>h3,
+.sv__bento>.bento:nth-child(8) .bento__body>h3 {
   grid-column: 2 !important;
   grid-row: 1 !important;
   margin: 0 !important;
 }
 
-.sv__bento > .bento--wide .bento__body > p,
-.sv__bento > .bento:last-child .bento__body > p,
-.sv__bento > .bento:nth-child(8) .bento__body > p {
+.sv__bento>.bento--wide .bento__body>p,
+.sv__bento>.bento:last-child .bento__body>p,
+.sv__bento>.bento:nth-child(8) .bento__body>p {
   grid-column: 1 / -1 !important;
   grid-row: 2 !important;
   margin-top: clamp(10px, 1.1vw, 14px) !important;
@@ -74,17 +75,19 @@
 }
 
 @media (max-width: 1024px) {
-  .sv__bento > .bento--wide,
-  .sv__bento > .bento:last-child,
-  .sv__bento > .bento:nth-child(8) {
+
+  .sv__bento>.bento--wide,
+  .sv__bento>.bento:last-child,
+  .sv__bento>.bento:nth-child(8) {
     grid-column: span 2 !important;
   }
 }
 
 @media (max-width: 560px) {
-  .sv__bento > .bento--wide,
-  .sv__bento > .bento:last-child,
-  .sv__bento > .bento:nth-child(8) {
+
+  .sv__bento>.bento--wide,
+  .sv__bento>.bento:last-child,
+  .sv__bento>.bento:nth-child(8) {
     grid-column: span 1 !important;
   }
 }
@@ -98,24 +101,28 @@
   color: #fff !important;
   transition: transform .4s var(--ease-out) !important;
 }
+
 .ft__brand:hover {
   transform: translateY(-2px) !important;
 }
+
 .ft__brandMark {
   display: block !important;
   width: auto !important;
   height: clamp(36px, 4.2vw, 44px) !important;
   object-fit: contain !important;
-  filter: drop-shadow(0 6px 14px rgba(0,0,0,.55)) !important;
+  filter: drop-shadow(0 6px 14px rgba(0, 0, 0, .55)) !important;
   transition: transform .4s var(--ease-out) !important;
 }
+
 .ft__brandSep {
   display: inline-block !important;
   width: 1px !important;
   height: 28px !important;
-  background: rgba(255,255,255,.32) !important;
+  background: rgba(255, 255, 255, .32) !important;
   flex-shrink: 0 !important;
 }
+
 .ft__brandName {
   font-family: var(--display) !important;
   font-size: clamp(1.3rem, 1.75vw, 1.58rem) !important;
@@ -128,7 +135,7 @@
 }
 
 /* ============================================================
-   BUTTON HOVER ANIMATION & PERSISTENT BORDER (NO HIGHLIGHT)
+   BUTTON STYLES (CLEAN HOVER, NORMAL SHADOW, NO SHINE/OUTER RING)
    ============================================================ */
 .pill,
 .ct__submit {
@@ -143,51 +150,33 @@
   line-height: 1 !important;
   padding: 16px 28px !important;
   border-radius: var(--r-chip) !important;
-  border: 1.5px solid transparent !important;
   text-decoration: none !important;
   cursor: pointer !important;
   white-space: nowrap !important;
   isolation: isolate !important;
   overflow: visible !important;
-  box-shadow: none !important;
-  transition: transform .3s var(--ease-out) !important;
+  transition: transform .28s var(--ease-out), box-shadow .28s var(--ease-out), border-color .28s var(--ease-out) !important;
 }
 
-/* Animated border element that draws and stays firmly on hover */
+/* Remove the floating outer ring border completely */
 .pill::after,
 .ct__submit::after {
-  content: "" !important;
-  position: absolute !important;
-  inset: -3.5px !important;
-  border-radius: inherit !important;
-  pointer-events: none !important;
-  border: 1.5px solid currentColor !important;
-  opacity: 0 !important;
-  transform: scale(.94) !important;
-  box-shadow: none !important;
-  transition: opacity .3s var(--ease-out), transform .3s var(--ease-out) !important;
-}
-
-.pill:hover::after,
-.pill:focus-visible::after,
-.ct__submit:hover::after,
-.ct__submit:focus-visible::after {
-  opacity: 1 !important;
-  transform: scale(1) !important;
+  display: none !important;
+  content: none !important;
 }
 
 /* Arrow smooth transition */
 .pill svg,
 .ct__submit svg {
   flex: none !important;
-  transition: transform .3s var(--ease-out) !important;
+  transition: transform .28s var(--ease-out) !important;
 }
 
 .pill:hover svg,
 .pill:focus-visible svg,
 .ct__submit:hover svg,
 .ct__submit:focus-visible svg {
-  transform: translate(3px, -3px) scale(1.08) !important;
+  transform: translate(3px, -3px) scale(1.06) !important;
 }
 
 .pill:active,
@@ -195,17 +184,13 @@
   transform: translateY(0) scale(.98) !important;
 }
 
-/* 1. Gold Button (Header CTA, About CTA, Contact Submit) - NO HIGHLIGHT */
+/* 1. Gold Button (Header CTA, About CTA, Contact Submit) */
 .pill--gold,
 .ct__submit {
   background: var(--gold) !important;
   color: var(--gold-ink) !important;
-  border-color: transparent !important;
-  box-shadow: none !important;
-}
-.pill--gold::after,
-.ct__submit::after {
-  border-color: var(--gold) !important;
+  border: 1.5px solid var(--gold) !important;
+  box-shadow: 0 4px 12px -2px rgba(0, 0, 0, 0.18) !important;
 }
 .pill--gold:hover,
 .pill--gold:focus-visible,
@@ -213,9 +198,9 @@
 .ct__submit:focus-visible {
   background: var(--gold) !important;
   color: var(--gold-ink) !important;
-  border-color: transparent !important;
-  box-shadow: none !important;
+  border: 1.5px solid var(--gold) !important;
   transform: translateY(-2px) !important;
+  box-shadow: 0 8px 22px -4px rgba(0, 0, 0, 0.28) !important;
 }
 .pill--gold:hover svg,
 .pill--gold:focus-visible svg,
@@ -225,23 +210,20 @@
   stroke: var(--gold-ink) !important;
 }
 
-/* 2. Navy Button (Intro CTA, About CTA) - NO HIGHLIGHT */
+/* 2. Navy Button (Intro CTA, About CTA) */
 .pill--navy {
   background: var(--navy) !important;
   color: #fff !important;
-  border-color: transparent !important;
-  box-shadow: none !important;
-}
-.pill--navy::after {
-  border-color: var(--navy) !important;
+  border: 1.5px solid var(--navy) !important;
+  box-shadow: 0 4px 12px -2px rgba(0, 0, 0, 0.18) !important;
 }
 .pill--navy:hover,
 .pill--navy:focus-visible {
   background: var(--navy) !important;
   color: #fff !important;
-  border-color: transparent !important;
-  box-shadow: none !important;
+  border: 1.5px solid var(--navy) !important;
   transform: translateY(-2px) !important;
+  box-shadow: 0 8px 22px -4px rgba(0, 0, 0, 0.28) !important;
 }
 .pill--navy:hover svg,
 .pill--navy:focus-visible svg {
@@ -249,23 +231,20 @@
   stroke: #fff !important;
 }
 
-/* 3. Cream Button (Hero CTA 1) - NO HIGHLIGHT */
+/* 3. Cream Button (Hero CTA 1) */
 .pill--cream {
   background: var(--cream) !important;
   color: var(--ink) !important;
-  border-color: transparent !important;
-  box-shadow: none !important;
-}
-.pill--cream::after {
-  border-color: #fff !important;
+  border: 1.5px solid var(--cream) !important;
+  box-shadow: 0 4px 12px -2px rgba(0, 0, 0, 0.15) !important;
 }
 .pill--cream:hover,
 .pill--cream:focus-visible {
   background: var(--cream) !important;
   color: var(--ink) !important;
-  border-color: transparent !important;
-  box-shadow: none !important;
+  border: 1.5px solid var(--cream) !important;
   transform: translateY(-2px) !important;
+  box-shadow: 0 8px 22px -4px rgba(0, 0, 0, 0.22) !important;
 }
 .pill--cream:hover svg,
 .pill--cream:focus-visible svg {
@@ -273,23 +252,20 @@
   stroke: var(--ink) !important;
 }
 
-/* 4. Gold Line Button (Hero CTA 2) - NO HIGHLIGHT */
+/* 4. Gold Line Button (Hero CTA 2) */
 .pill--gold-line {
   background: transparent !important;
   color: var(--gold) !important;
   border: 1.5px solid var(--gold) !important;
   box-shadow: none !important;
 }
-.pill--gold-line::after {
-  border-color: var(--gold) !important;
-}
 .pill--gold-line:hover,
 .pill--gold-line:focus-visible {
   background: transparent !important;
   color: var(--gold) !important;
-  border-color: var(--gold) !important;
-  box-shadow: none !important;
+  border: 1.5px solid var(--gold) !important;
   transform: translateY(-2px) !important;
+  box-shadow: 0 6px 18px -4px rgba(0, 0, 0, 0.25) !important;
 }
 .pill--gold-line:hover svg,
 .pill--gold-line:focus-visible svg {
@@ -297,23 +273,20 @@
   stroke: var(--gold) !important;
 }
 
-/* 5. Ghost Button (WhatsApp CTA) - NO HIGHLIGHT */
+/* 5. Ghost Button (WhatsApp CTA) */
 .pill--ghost {
   background: transparent !important;
   color: #fff !important;
   border: 1.5px solid rgba(255, 255, 255, .32) !important;
   box-shadow: none !important;
 }
-.pill--ghost::after {
-  border-color: var(--gold) !important;
-}
 .pill--ghost:hover,
 .pill--ghost:focus-visible {
   background: transparent !important;
   color: #fff !important;
-  border-color: var(--gold) !important;
-  box-shadow: none !important;
+  border: 1.5px solid rgba(255, 255, 255, .65) !important;
   transform: translateY(-2px) !important;
+  box-shadow: 0 6px 18px -4px rgba(0, 0, 0, 0.25) !important;
 }
 .pill--ghost:hover svg,
 .pill--ghost:focus-visible svg {
@@ -321,24 +294,18 @@
   stroke: #fff !important;
 }
 
-/* 6. Outline Button - NO HIGHLIGHT */
+/* 6. Outline Button */
 .pill--outline {
   background: transparent !important;
   color: var(--ink) !important;
   border: 1.5px solid var(--line-navy) !important;
   box-shadow: none !important;
 }
-.pill--outline::after {
-  border-color: var(--navy) !important;
-}
 .pill--outline:hover,
 .pill--outline:focus-visible {
   background: transparent !important;
-  border-color: var(--navy) !important;
+  border: 1.5px solid var(--navy) !important;
   color: var(--navy) !important;
-  box-shadow: none !important;
   transform: translateY(-2px) !important;
+  box-shadow: 0 6px 18px -4px rgba(0, 0, 0, 0.18) !important;
 }
-
-
-
