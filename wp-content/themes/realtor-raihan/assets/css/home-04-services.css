@@ -70,7 +70,7 @@
 .bento--wide .bento__body,
 .sv__bento > .bento:last-child:nth-child(8) .bento__body{
   display:grid;grid-template-columns:auto minmax(0,1fr);
-  column-gap:clamp(12px,1.2vw,16px);align-items:center}
+  column-gap:clamp(12px,1.2vw,16px);align-items:start}
 .bento--wide .bento__ico,
 .sv__bento > .bento:last-child:nth-child(8) .bento__ico{
   grid-column:1;grid-row:1}
@@ -126,7 +126,8 @@
   transform:translateY(-2px) rotate(-4deg);
   box-shadow:0 12px 24px -12px rgba(200,163,77,.75)}
 
-.bento__body{margin-top:auto;position:relative;z-index:2}
+.bento__body{margin-top:0;position:relative;z-index:2}
+.bento--feat .bento__body{margin-top:auto}
 /* icon owns the left edge; heading and copy sit on one shared text axis */
 .bento__body{
   display:grid;grid-template-columns:auto minmax(0,1fr);

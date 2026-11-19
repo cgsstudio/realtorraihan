@@ -35,7 +35,15 @@ $icons = array(
   display: grid !important;
   grid-template-columns: auto minmax(0, 1fr) !important;
   column-gap: clamp(12px, 1.2vw, 16px) !important;
-  align-items: center !important;
+  align-items: start !important;
+}
+
+/* Ensure all cards have uniform top spacing */
+.sv__bento > .bento:not(.bento--feat) .bento__body {
+  margin-top: 0 !important;
+}
+.sv__bento > .bento--feat .bento__body {
+  margin-top: auto !important;
 }
 
 .sv__bento > .bento--wide .bento__ico,
