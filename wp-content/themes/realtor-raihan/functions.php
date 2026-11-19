@@ -9,7 +9,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'RR_VERSION', '1.0.20' );
+define( 'RR_VERSION', '1.0.21' );
 define( 'RR_DIR', get_template_directory() );
 define( 'RR_URI', get_template_directory_uri() );
 
@@ -52,6 +52,10 @@ function rr_assets() {
 	if ( is_page_template( 'page-templates/about.php' ) ) {
 		$css['rr-about'] = 'about.css';
 	}
+	if ( is_page_template( 'page-templates/contact.php' ) ) {
+		$css['rr-home-contact'] = 'home-11-contact.css';
+		$css['rr-contact']      = 'contact.css';
+	}
 	if ( is_home() || is_archive() || is_search() ) {
 		$css['rr-blog'] = 'blog.css';
 	}
@@ -88,6 +92,9 @@ function rr_assets() {
 	}
 	if ( is_page_template( 'page-templates/about.php' ) ) {
 		wp_enqueue_script( 'rr-about', RR_URI . '/assets/js/about.js', array(), RR_VERSION, true );
+	}
+	if ( is_page_template( 'page-templates/contact.php' ) ) {
+		wp_enqueue_script( 'rr-contact-js', RR_URI . '/assets/js/11-contact.js', array(), RR_VERSION, true );
 	}
 	if ( is_home() || is_archive() || is_search() ) {
 		wp_enqueue_script( 'rr-blog', RR_URI . '/assets/js/blog.js', array(), RR_VERSION, true );

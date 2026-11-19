@@ -74,13 +74,29 @@ function rr_link( $slug = '', $hash = '' ) {
 }
 
 /**
- * Home page anchor, prefixed properly when we are not on the front page.
+ * One place that knows where the contact page lives.
+ *
+ * @return string
+ */
+function rr_contact_url() {
+	$page = get_page_by_path( 'contact' );
+	if ( $page ) {
+		return get_permalink( $page );
+	}
+	return home_url( '/contact/' );
+}
+
+/**
+ * Home page anchor or dedicated page link.
  *
  * @param string $id Section id.
  * @return string
  */
 function rr_anchor( $id ) {
 	$id = ltrim( $id, '#' );
+	if ( 'contact' === $id ) {
+		return rr_contact_url();
+	}
 	if ( is_front_page() ) {
 		return '#' . $id;
 	}

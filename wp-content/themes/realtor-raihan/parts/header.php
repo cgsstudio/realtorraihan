@@ -63,7 +63,7 @@
       printf( '<a href="%s" style="--i:0"%s>Home</a>', esc_url( home_url( '/' ) ), is_front_page() ? ' aria-current="page"' : '' ); // phpcs:ignore
       printf( '<a href="%s" style="--i:1"%s>About</a>', esc_url( rr_link( 'about' ) ), is_page_template( 'page-templates/about.php' ) ? ' aria-current="page"' : '' ); // phpcs:ignore
       printf( '<a href="%s" style="--i:2"%s>Blog</a>', esc_url( rr_blog_url() ), ( is_home() || is_singular( 'post' ) ) ? ' aria-current="page"' : '' ); // phpcs:ignore
-      printf( '<a href="%s" style="--i:3">Contact</a>', esc_url( rr_anchor( 'contact' ) ) ); // phpcs:ignore
+      printf( '<a href="%s" style="--i:3"%s>Contact</a>', esc_url( rr_contact_url() ), is_page_template( 'page-templates/contact.php' ) ? ' aria-current="page"' : '' ); // phpcs:ignore
   }
   ?>
   <div class="mmenu__ctaWrap">

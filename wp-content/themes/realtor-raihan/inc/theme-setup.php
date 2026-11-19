@@ -48,15 +48,15 @@ add_action(
  */
 function rr_fallback_menu() {
 	$items = array(
-		array( 'Home', rr_anchor( 'hero' ) ),
+		array( 'Home', home_url( '/' ) ),
 		array( 'About', rr_link( 'about' ) ),
 		array( 'Blog', rr_blog_url() ),
-		array( 'Contact', rr_anchor( 'contact' ) ),
+		array( 'Contact', rr_contact_url() ),
 	);
 	echo '<a href="' . esc_url( $items[0][1] ) . '"' . ( is_front_page() ? ' aria-current="page"' : '' ) . '>Home</a>';
 	echo '<a href="' . esc_url( $items[1][1] ) . '"' . ( is_page_template( 'page-templates/about.php' ) ? ' aria-current="page"' : '' ) . '>About</a>';
 	echo '<a href="' . esc_url( $items[2][1] ) . '"' . ( ( is_home() || is_singular( 'post' ) ) ? ' aria-current="page"' : '' ) . '>Blog</a>';
-	echo '<a href="' . esc_url( $items[3][1] ) . '">Contact</a>';
+	echo '<a href="' . esc_url( $items[3][1] ) . '"' . ( is_page_template( 'page-templates/contact.php' ) ? ' aria-current="page"' : '' ) . '>Contact</a>';
 }
 
 /**
@@ -98,7 +98,7 @@ function rr_provision_pages() {
 		),
 		'contact' => array(
 			'title'    => 'Contact',
-			'template' => '',
+			'template' => 'page-templates/contact.php',
 		),
 	);
 
@@ -148,6 +148,39 @@ add_action(
 		}
 		rr_provision_pages();
 		update_option( 'rr_provisioned', 1 );
+	}
+);
+
+/**
+ * Automatically ensure the Contact page exists with the Contact page template.
+ */
+add_action(
+	'init',
+	function () {
+		if ( get_option( 'rr_contact_page_provisioned' ) ) {
+			return;
+		}
+		$contact = get_page_by_path( 'contact' );
+		if ( ! $contact ) {
+			$id = wp_insert_post(
+				array(
+					'post_title'   => 'Contact',
+					'post_name'    => 'contact',
+					'post_status'  => 'publish',
+					'post_type'    => 'page',
+					'post_content' => '',
+				)
+			);
+			if ( $id && ! is_wp_error( $id ) ) {
+				update_post_meta( $id, '_wp_page_template', 'page-templates/contact.php' );
+			}
+		} else {
+			$tpl = get_post_meta( $contact->ID, '_wp_page_template', true );
+			if ( 'page-templates/contact.php' !== $tpl ) {
+				update_post_meta( $contact->ID, '_wp_page_template', 'page-templates/contact.php' );
+			}
+		}
+		update_option( 'rr_contact_page_provisioned', 1 );
 	}
 );
 

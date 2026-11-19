@@ -79,7 +79,10 @@ $error = isset( $_GET['enquiry'] ) && 'error' === $_GET['enquiry']; // phpcs:ign
       <form class="ct__form" id="ctForm"<?php echo $sent ? ' style="display:none"' : ''; ?> action="<?php echo esc_url( admin_url( 'admin-post.php' ) ); ?>" method="post" novalidate>
         <input type="hidden" name="action" value="rr_enquiry">
         <?php wp_nonce_field( 'rr_enquiry', 'rr_enquiry_nonce' ); ?>
-        <input type="hidden" name="rr_redirect" value="<?php echo esc_url( home_url( '/#contact' ) ); ?>">
+        <?php
+        $redirect_target = is_page_template( 'page-templates/contact.php' ) ? rr_contact_url() : home_url( '/' );
+        ?>
+        <input type="hidden" name="rr_redirect" value="<?php echo esc_url( $redirect_target . '#contact' ); ?>">
         <p style="position:absolute;left:-9999px" aria-hidden="true">
           <label for="rr_website">Website</label>
           <input id="rr_website" name="rr_website" type="text" tabindex="-1" autocomplete="off">
