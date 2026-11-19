@@ -83,4 +83,39 @@
     }, { passive:true });
     toggleFab();
   }
+
+  /* ---- floating contact speed-dial (WhatsApp & Call) ---- */
+  var speedDial = document.getElementById('rrSpeedDial');
+  var speedDialBtn = document.getElementById('rrSpeedDialBtn');
+  var speedDialActions = document.getElementById('rrSpeedDialActions');
+  if (speedDial && speedDialBtn && speedDialActions) {
+    var actionLinks = [].slice.call(speedDialActions.querySelectorAll('a'));
+    var toggleSpeedDial = function(open){
+      var isOpen = typeof open === 'boolean' ? open : !speedDial.classList.contains('is-open');
+      speedDial.classList.toggle('is-open', isOpen);
+      speedDialBtn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+      speedDialActions.setAttribute('aria-hidden', isOpen ? 'false' : 'true');
+      actionLinks.forEach(function(a){ a.tabIndex = isOpen ? 0 : -1; });
+    };
+
+    speedDialBtn.addEventListener('click', function(e){
+      e.stopPropagation();
+      toggleSpeedDial();
+    });
+
+    // Close when clicking outside
+    document.addEventListener('click', function(e){
+      if (!speedDial.contains(e.target) && speedDial.classList.contains('is-open')) {
+        toggleSpeedDial(false);
+      }
+    });
+
+    // Close on Escape
+    document.addEventListener('keydown', function(e){
+      if (e.key === 'Escape' && speedDial.classList.contains('is-open')) {
+        toggleSpeedDial(false);
+        speedDialBtn.focus();
+      }
+    });
+  }
 })();

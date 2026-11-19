@@ -636,3 +636,200 @@
     line-height: 1.55 !important;
   }
 }
+
+/* ============================================================
+   FLOATING SPEED DIAL (WHATSAPP & CALL WIDGET)
+   ============================================================ */
+.rr-speed-dial {
+  position: fixed;
+  right: 25px;
+  bottom: 25px;
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  pointer-events: none;
+}
+
+/* Actions Stack */
+.rr-speed-dial__actions {
+  display: flex;
+  flex-direction: column-reverse;
+  gap: 14px;
+  margin-bottom: 14px;
+  align-items: flex-end;
+  pointer-events: none;
+}
+
+.rr-speed-dial__action {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none !important;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(18px) scale(0.85);
+  transition: transform .32s cubic-bezier(.16, 1, .3, 1), opacity .25s ease;
+}
+
+/* Open state */
+.rr-speed-dial.is-open .rr-speed-dial__actions {
+  pointer-events: auto;
+}
+
+.rr-speed-dial.is-open .rr-speed-dial__action {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0) scale(1);
+}
+
+.rr-speed-dial.is-open .rr-speed-dial__action--wa {
+  transition-delay: 40ms;
+}
+
+.rr-speed-dial.is-open .rr-speed-dial__action--phone {
+  transition-delay: 90ms;
+}
+
+/* Action Icons */
+.rr-speed-dial__icon {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: none;
+  transition: transform .25s var(--ease-out), box-shadow .25s var(--ease-out);
+}
+
+.rr-speed-dial__action--wa .rr-speed-dial__icon {
+  background: #25D366;
+  color: #ffffff;
+  box-shadow: 0 6px 18px -2px rgba(37, 211, 102, 0.45);
+}
+
+.rr-speed-dial__action--phone .rr-speed-dial__icon {
+  background: #03E78B;
+  color: #ffffff;
+  box-shadow: 0 6px 18px -2px rgba(3, 231, 139, 0.45);
+}
+
+.rr-speed-dial__action:hover .rr-speed-dial__icon {
+  transform: scale(1.08);
+}
+
+.rr-speed-dial__action--wa:hover .rr-speed-dial__icon {
+  box-shadow: 0 8px 24px -2px rgba(37, 211, 102, 0.65);
+}
+
+.rr-speed-dial__action--phone:hover .rr-speed-dial__icon {
+  box-shadow: 0 8px 24px -2px rgba(3, 231, 139, 0.65);
+}
+
+/* Action Tooltip Labels */
+.rr-speed-dial__label {
+  background: #ffffff;
+  color: #0B1F3A;
+  font-family: var(--body);
+  font-size: 0.82rem;
+  font-weight: 600;
+  padding: 6px 12px;
+  border-radius: 6px;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.18);
+  white-space: nowrap;
+  pointer-events: none;
+  opacity: 0.95;
+  transition: opacity .2s ease;
+}
+
+.rr-speed-dial__action:hover .rr-speed-dial__label {
+  opacity: 1;
+}
+
+/* Main Trigger Button */
+.rr-speed-dial__btn {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: var(--navy, #0B1F3A) !important;
+  border: 1.5px solid var(--gold, #C8A34D) !important;
+  color: #ffffff !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  position: relative !important;
+  cursor: pointer !important;
+  pointer-events: auto !important;
+  box-shadow: 0 8px 24px -4px rgba(0, 0, 0, 0.35) !important;
+  transition: transform .3s cubic-bezier(.16, 1, .3, 1), background-color .3s ease !important;
+  animation: rrFabPulse 2.8s infinite;
+}
+
+.rr-speed-dial__btn:hover {
+  transform: scale(1.06);
+}
+
+.rr-speed-dial.is-open .rr-speed-dial__btn {
+  animation: none;
+  background: var(--navy-card, #12294B) !important;
+}
+
+@keyframes rrFabPulse {
+  0% { box-shadow: 0 8px 24px -4px rgba(0,0,0,.35), 0 0 0 0 rgba(200,163,77,.5); }
+  65% { box-shadow: 0 8px 24px -4px rgba(0,0,0,.35), 0 0 0 14px rgba(200,163,77,0); }
+  100% { box-shadow: 0 8px 24px -4px rgba(0,0,0,.35), 0 0 0 0 rgba(200,163,77,0); }
+}
+
+/* Icons inside main button */
+.rr-speed-dial__msg-ico,
+.rr-speed-dial__close-ico {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform .35s var(--ease-out), opacity .3s ease;
+}
+
+.rr-speed-dial__msg-ico {
+  opacity: 1;
+  transform: scale(1) rotate(0deg);
+  color: var(--gold);
+}
+
+.rr-speed-dial__close-ico {
+  opacity: 0;
+  transform: scale(0.6) rotate(-90deg);
+  color: #ffffff;
+}
+
+.rr-speed-dial.is-open .rr-speed-dial__msg-ico {
+  opacity: 0;
+  transform: scale(0.6) rotate(90deg);
+}
+
+.rr-speed-dial.is-open .rr-speed-dial__close-ico {
+  opacity: 1;
+  transform: scale(1) rotate(0deg);
+}
+
+/* Move Back-To-Top button to bottom-left so it never clashes */
+.ft__fab {
+  left: clamp(16px, 2.4vw, 30px) !important;
+  right: auto !important;
+}
+
+@media (max-width: 560px) {
+  .rr-speed-dial {
+    right: 18px;
+    bottom: 18px;
+  }
+  .rr-speed-dial__btn {
+    width: 52px;
+    height: 52px;
+  }
+  .rr-speed-dial__icon {
+    width: 44px;
+    height: 44px;
+  }
+}
