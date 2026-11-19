@@ -1,0 +1,26 @@
+# WordPress Environment & Credentials
+wp-config.php
+local-xdebuginfo.php
+.htaccess
+
+# WordPress Uploads, Cache & Upgrades
+wp-content/uploads/
+wp-content/upgrade/
+wp-content/cache/
+wp-content/backup-db/
+wp-content/backups/
+wp-content/blogs.dir/
+
+# Server and Editor Logs / Temp files
+*.log
+.DS_Store
+Thumbs.db
+desktop.ini
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# Node / Composer dependencies (if any)
+node_modules/
+vendor/

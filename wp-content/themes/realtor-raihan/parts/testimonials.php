@@ -1,0 +1,54 @@
+<?php
+/**
+ * Section 8: testimonial carousel.
+ *
+ * @package RealtorRaihan
+ */
+
+$rows = rr_h_rows( 'testimonials' );
+$star = '<svg viewBox="0 0 24 24" fill="currentColor"><path d="m12 2 3 6.6 7 .9-5.1 4.8 1.3 7L12 17.9 5.8 21.3l1.3-7L2 9.5l7-.9z"/></svg>';
+$n    = count( $rows );
+?>
+<section class="ts" id="testimonials" aria-labelledby="ts-title">
+  <span class="ts__bloomA" aria-hidden="true"></span>
+  <span class="ts__bloomB" aria-hidden="true"></span>
+
+  <div class="ts__wrap">
+
+    <div class="ts__head">
+      <?php rr_head_lines( rr_h( 'ts_title' ), 'ts-title' ); ?>
+      <p class="ts__lede rv"><?php echo wp_kses_post( rr_h( 'ts_lede' ) ); ?></p>
+    </div>
+
+    <div class="ts__stage rv">
+      <button class="ts__arrow ts__arrow--prev" type="button" id="tsPrev" aria-label="<?php esc_attr_e( 'Previous testimonial', 'realtor-raihan' ); ?>">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
+      </button>
+      <button class="ts__arrow ts__arrow--next" type="button" id="tsNext" aria-label="<?php esc_attr_e( 'Next testimonial', 'realtor-raihan' ); ?>">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg>
+      </button>
+
+      <div class="ts__track" id="tsTrack" role="group" aria-roledescription="carousel" aria-label="<?php esc_attr_e( 'Client testimonials', 'realtor-raihan' ); ?>">
+        <?php foreach ( $rows as $i => $row ) : ?>
+          <figure class="tcard" data-pos="<?php echo (int) $i; ?>" tabindex="0" role="group" aria-roledescription="slide" aria-label="<?php echo esc_attr( ( $i + 1 ) . ' of ' . $n ); ?>">
+            <div class="tcard__top">
+              <span class="tcard__stars" role="img" aria-label="<?php esc_attr_e( 'Rated 5 out of 5', 'realtor-raihan' ); ?>"><?php echo str_repeat( $star, 5 ); // phpcs:ignore ?></span>
+              <span class="tcard__no"><?php echo esc_html( rr_num( $i + 1 ) ); ?></span>
+            </div>
+            <blockquote><?php echo wp_kses_post( $row['quote'] ); ?></blockquote>
+            <figcaption>
+              <span class="tcard__av" aria-hidden="true"><?php echo esc_html( mb_substr( $row['name'], 0, 1 ) ); ?></span>
+              <div>
+                <div class="tcard__nm"><?php echo esc_html( $row['name'] ); ?></div>
+                <div class="tcard__rl"><?php echo esc_html( $row['role'] ); ?></div>
+              </div>
+            </figcaption>
+          </figure>
+        <?php endforeach; ?>
+      </div>
+    </div>
+
+    <p class="ts__note rv"><?php echo esc_html( rr_h( 'ts_note' ) ); ?></p>
+
+  </div>
+</section>
