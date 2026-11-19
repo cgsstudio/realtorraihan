@@ -54,11 +54,18 @@
              inset 0 0 70px -18px rgba(120,170,255,.16)}
 
 /* ---------------- left: brand column ---------------- */
-.ft__brand{display:inline-block;text-decoration:none;color:#fff}
+.ft__brand{display:inline-flex;align-items:center;gap:13px;text-decoration:none;color:#fff;
+  transition:transform .4s var(--ease-out)}
+.ft__brand:hover{transform:translateY(-2px)}
+.ft__brandMark{display:block;width:auto;height:clamp(36px,4.2vw,44px);object-fit:contain;
+  filter:drop-shadow(0 6px 14px rgba(0,0,0,.55));transition:transform .4s var(--ease-out)}
+.ft__brand:hover .ft__brandMark{transform:scale(1.04)}
+.ft__brandSep{display:inline-block;width:1px;height:28px;background:rgba(255,255,255,.32);flex-shrink:0}
+.ft__brandName{font-family:var(--display);font-size:clamp(1.3rem,1.75vw,1.58rem);font-weight:400;
+  line-height:1;letter-spacing:-.015em;color:var(--gold);white-space:nowrap;display:inline-block}
 .ft__logo{display:block;width:auto;height:clamp(34px,4.4vw,48px);
   filter:drop-shadow(0 8px 18px rgba(0,0,0,.55));
   transition:transform .5s var(--ease-out)}
-.ft__brand:hover .ft__logo{transform:translateY(-2px)}
 
 .ft__follow{margin:clamp(20px,2.6vw,30px) 0 0;
   font-size:.72rem;font-weight:600;letter-spacing:.06em;

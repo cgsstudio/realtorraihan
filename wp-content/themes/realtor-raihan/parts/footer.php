@@ -32,8 +32,9 @@ $copyright = get_theme_mod( 'rr_footer_copyright', '' );
       <!-- brand column -->
       <div class="rv">
         <a class="ft__brand" href="<?php echo esc_url( home_url( '/' ) ); ?>" aria-label="<?php echo esc_attr( rr_site_name() ); ?>">
-          <img class="ft__logo" id="ft-title" src="<?php echo esc_url( rr_logo_lockup() ); ?>" width="900" height="192"
-               alt="<?php echo esc_attr( rr_site_name() ); ?>" loading="lazy" decoding="async">
+          <img class="ft__brandMark" src="<?php echo esc_url( rr_logo_mark() ); ?>" width="38" height="40" alt="<?php echo esc_attr( rr_site_name() ); ?>" loading="lazy" decoding="async">
+          <span class="ft__brandSep" aria-hidden="true"></span>
+          <span class="ft__brandName" id="ft-title"><?php echo esc_html( rr_site_name() ); ?></span>
         </a>
 
         <p class="ft__follow"><?php esc_html_e( 'Follow Us:', 'realtor-raihan' ); ?></p>

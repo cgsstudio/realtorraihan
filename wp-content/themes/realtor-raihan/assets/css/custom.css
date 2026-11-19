@@ -89,3 +89,42 @@
   }
 }
 
+/* Footer Brand Logo Lockup ([Emblem] | Realtor Raihan) */
+.ft__brand {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 13px !important;
+  text-decoration: none !important;
+  color: #fff !important;
+  transition: transform .4s var(--ease-out) !important;
+}
+.ft__brand:hover {
+  transform: translateY(-2px) !important;
+}
+.ft__brandMark {
+  display: block !important;
+  width: auto !important;
+  height: clamp(36px, 4.2vw, 44px) !important;
+  object-fit: contain !important;
+  filter: drop-shadow(0 6px 14px rgba(0,0,0,.55)) !important;
+  transition: transform .4s var(--ease-out) !important;
+}
+.ft__brandSep {
+  display: inline-block !important;
+  width: 1px !important;
+  height: 28px !important;
+  background: rgba(255,255,255,.32) !important;
+  flex-shrink: 0 !important;
+}
+.ft__brandName {
+  font-family: var(--display) !important;
+  font-size: clamp(1.3rem, 1.75vw, 1.58rem) !important;
+  font-weight: 400 !important;
+  line-height: 1 !important;
+  letter-spacing: -.015em !important;
+  color: var(--gold) !important;
+  white-space: nowrap !important;
+  display: inline-block !important;
+}
+
+
