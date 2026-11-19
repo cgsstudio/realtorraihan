@@ -41,7 +41,7 @@ body.rr-wp{background:var(--cream)}
 .rr-article .po-body__wrap h3{font-family:var(--display);color:var(--navy);
   font-size:clamp(1.12rem,1.8vw,1.3rem);margin:1.4em 0 .4em}
 .rr-article .po-body__wrap p{margin:0 0 1.1em;line-height:1.78}
-.rr-article .po-body__wrap a{color:var(--navy);text-decoration:underline;text-underline-offset:3px}
+.rr-article .po-body__wrap a{color:white;text-decoration:underline;text-underline-offset:3px}
 .rr-article .po-body__wrap img{border-radius:16px;height:auto;max-width:100%;margin:1.2em 0}
 .rr-article .po-body__wrap blockquote{font-family:var(--display);font-size:1.24rem;line-height:1.4;
   color:var(--navy);border-left:3px solid var(--gold);padding:6px 0 6px 22px;margin:1.7em 0}
