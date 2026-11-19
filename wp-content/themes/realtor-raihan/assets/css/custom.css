@@ -895,3 +895,10 @@
   margin-inline: auto !important;
   text-align: center !important;
 }
+
+/* ============================================================
+   FOOTER BACKGROUND OVERLAY
+   ============================================================ */
+.ft__bg::after {
+  background: linear-gradient(180deg, rgba(7, 20, 38, .64) 0%, rgba(7, 20, 38, .48) 28%, rgba(7, 20, 38, .64) 65%, rgba(7, 20, 38, .88) 100%) !important;
+}

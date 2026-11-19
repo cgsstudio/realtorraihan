@@ -138,8 +138,8 @@
   display:block;transform:scale(1.02);will-change:transform}
 /* keep the photo readable behind the panel but still clearly a photograph */
 .ft__bg::after{content:"";position:absolute;inset:0;
-  background:linear-gradient(180deg,rgba(8,26,56,.34) 0%,rgba(8,26,56,.16) 26%,
-    rgba(8,26,56,.34) 60%,rgba(8,26,56,.78) 100%)}
+  background:linear-gradient(180deg,rgba(7,20,38,.64) 0%,rgba(7,20,38,.48) 28%,
+    rgba(7,20,38,.64) 65%,rgba(7,20,38,.88) 100%)}
 
 /* the panel runs wider than the section max-width, like the reference */
 .ft__wrap{max-width:1560px;margin-inline:auto;
