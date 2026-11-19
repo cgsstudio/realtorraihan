@@ -179,6 +179,55 @@ HTML;
 	);
 }
 
+/**
+ * Import the approved demo articles.
+ */
+function rr_import_demo_posts() {
+	require_once ABSPATH . 'wp-admin/includes/media.php';
+	require_once ABSPATH . 'wp-admin/includes/file.php';
+	require_once ABSPATH . 'wp-admin/includes/image.php';
+
+	foreach ( rr_demo_posts() as $demo ) {
+		$existing = get_page_by_path( $demo['slug'], OBJECT, 'post' );
+		if ( $existing ) {
+			continue;
+		}
+		$post_id = wp_insert_post(
+			array(
+				'post_title'    => $demo['title'],
+				'post_name'     => $demo['slug'],
+				'post_content'  => $demo['body'],
+				'post_excerpt'  => $demo['excerpt'],
+				'post_status'   => 'publish',
+				'post_type'     => 'post',
+				'post_date'     => $demo['date'],
+				'post_category' => array( rr_demo_category( $demo['category'] ) ),
+			)
+		);
+		if ( is_wp_error( $post_id ) || ! $post_id ) {
+			continue;
+		}
+
+		// Featured image from the theme's own assets.
+		$file = RR_DIR . '/assets/img/' . $demo['image'];
+		if ( file_exists( $file ) ) {
+			$tmp = wp_tempnam( $demo['image'] );
+			copy( $file, $tmp );
+			$attachment_id = media_handle_sideload(
+				array(
+					'name'     => $demo['image'],
+					'tmp_name' => $tmp,
+				),
+				$post_id,
+				$demo['title']
+			);
+			if ( ! is_wp_error( $attachment_id ) ) {
+				set_post_thumbnail( $post_id, $attachment_id );
+			}
+		}
+	}
+}
+
 add_action(
 	'admin_post_rr_demo_import',
 	function () {
@@ -187,49 +236,7 @@ add_action(
 		}
 		check_admin_referer( 'rr_demo_import' );
 
-		require_once ABSPATH . 'wp-admin/includes/media.php';
-		require_once ABSPATH . 'wp-admin/includes/file.php';
-		require_once ABSPATH . 'wp-admin/includes/image.php';
-
-		foreach ( rr_demo_posts() as $demo ) {
-			$existing = get_page_by_path( $demo['slug'], OBJECT, 'post' );
-			if ( $existing ) {
-				continue;
-			}
-			$post_id = wp_insert_post(
-				array(
-					'post_title'    => $demo['title'],
-					'post_name'     => $demo['slug'],
-					'post_content'  => $demo['body'],
-					'post_excerpt'  => $demo['excerpt'],
-					'post_status'   => 'publish',
-					'post_type'     => 'post',
-					'post_date'     => $demo['date'],
-					'post_category' => array( rr_demo_category( $demo['category'] ) ),
-				)
-			);
-			if ( is_wp_error( $post_id ) || ! $post_id ) {
-				continue;
-			}
-
-			// Featured image from the theme's own assets.
-			$file = RR_DIR . '/assets/img/' . $demo['image'];
-			if ( file_exists( $file ) ) {
-				$tmp = wp_tempnam( $demo['image'] );
-				copy( $file, $tmp );
-				$attachment_id = media_handle_sideload(
-					array(
-						'name'     => $demo['image'],
-						'tmp_name' => $tmp,
-					),
-					$post_id,
-					$demo['title']
-				);
-				if ( ! is_wp_error( $attachment_id ) ) {
-					set_post_thumbnail( $post_id, $attachment_id );
-				}
-			}
-		}
+		rr_import_demo_posts();
 
 		// Provision the About page image defaults as well.
 		if ( ! get_option( 'rr_about_page' ) ) {
@@ -238,6 +245,24 @@ add_action(
 
 		wp_safe_redirect( add_query_arg( 'rr_demo', '1', admin_url( 'tools.php?page=rr-demo' ) ) );
 		exit;
+	}
+);
+
+/**
+ * Auto-provision articles if there are no posts published yet.
+ */
+add_action(
+	'init',
+	function () {
+		if ( get_option( 'rr_demo_posts_auto_checked' ) ) {
+			return;
+		}
+		$counts    = wp_count_posts( 'post' );
+		$published = isset( $counts->publish ) ? (int) $counts->publish : 0;
+		if ( $published < 2 ) {
+			rr_import_demo_posts();
+		}
+		update_option( 'rr_demo_posts_auto_checked', 1 );
 	}
 );
 

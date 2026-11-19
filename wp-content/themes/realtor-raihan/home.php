@@ -1,7 +1,8 @@
 <?php
 /**
- * The blog index: hero, topic filter, post grid, newsletter band.
- * Posts come from WordPress, so a new article appears here automatically.
+ * The blog index: hero, topic filter, dynamic post grid, newsletter band.
+ * Posts come dynamically from WordPress, so any article added under Posts
+ * automatically appears here.
  *
  * @package RealtorRaihan
  */
@@ -10,15 +11,22 @@ get_header();
 
 $b = function_exists( 'rr_blog' ) ? rr_blog() : array();
 
-$hero_q = new WP_Query(
+$paged = ( get_query_var( 'paged' ) ) ? get_query_var( 'paged' ) : ( ( get_query_var( 'page' ) ) ? get_query_var( 'page' ) : 1 );
+
+$posts_per_page = (int) get_option( 'posts_per_page', 9 );
+if ( $posts_per_page < 1 ) {
+	$posts_per_page = 9;
+}
+
+$blog_query = new WP_Query(
 	array(
-		'post_type'      => 'post',
-		'posts_per_page' => 1,
-		'ignore_sticky_posts' => false,
+		'post_type'           => 'post',
+		'post_status'         => 'publish',
+		'paged'               => $paged,
+		'posts_per_page'      => $posts_per_page,
+		'ignore_sticky_posts' => 0,
 	)
 );
-$hero_id = $hero_q->have_posts() ? $hero_q->posts[0]->ID : 0;
-wp_reset_postdata();
 
 $terms = get_terms(
 	array(
@@ -73,23 +81,37 @@ $hero_img = ! empty( $b['hero_img'] ) ? $b['hero_img'] : get_theme_mod( 'rr_blog
 
     <div class="bl-grid" id="blGrid">
       <?php
-      if ( have_posts() ) :
-          while ( have_posts() ) :
-              the_post();
-              $cats     = get_the_category();
-              $cat_slug = $cats ? $cats[0]->slug : '';
-              $cat_name = $cats ? $cats[0]->name : '';
+      if ( $blog_query->have_posts() ) :
+          while ( $blog_query->have_posts() ) :
+              $blog_query->the_post();
+              $cats       = get_the_category();
+              $cat_slugs  = array();
+              $cat_names  = array();
+              if ( $cats && ! is_wp_error( $cats ) ) {
+                  foreach ( $cats as $c ) {
+                      $cat_slugs[] = $c->slug;
+                      $cat_names[] = $c->name;
+                  }
+              }
+              $cat_slug_attr = ! empty( $cat_slugs ) ? implode( ' ', $cat_slugs ) : '';
+              $primary_cat   = ! empty( $cat_names ) ? $cat_names[0] : '';
               ?>
-              <a class="bl-card" href="<?php the_permalink(); ?>" data-cat="<?php echo esc_attr( $cat_slug ); ?>">
+              <a class="bl-card" href="<?php the_permalink(); ?>" data-cat="<?php echo esc_attr( $cat_slug_attr ); ?>">
                 <div class="bl-card__img">
                   <?php if ( has_post_thumbnail() ) : ?>
                     <?php the_post_thumbnail( 'rr-card', array( 'loading' => 'lazy' ) ); ?>
                   <?php else : ?>
-                    <img src="<?php echo esc_url( RR_URI . '/assets/img/gen-marina-night.webp' ); ?>" alt="" loading="lazy" decoding="async">
+                    <img src="<?php echo esc_url( RR_URI . '/assets/img/gen-marina-night.webp' ); ?>" alt="<?php the_title_attribute(); ?>" loading="lazy" decoding="async">
                   <?php endif; ?>
                 </div>
                 <div class="bl-card__body">
-                  <p class="bl-card__date"><span><?php echo esc_html( get_the_date() ); ?></span><i aria-hidden="true"></i><span><?php echo esc_html( $cat_name ); ?></span></p>
+                  <p class="bl-card__date">
+                    <span><?php echo esc_html( get_the_date() ); ?></span>
+                    <?php if ( $primary_cat ) : ?>
+                      <i aria-hidden="true"></i><span><?php echo esc_html( $primary_cat ); ?></span>
+                    <?php endif; ?>
+                    <i aria-hidden="true"></i><span><?php echo esc_html( rr_reading_time() ); ?></span>
+                  </p>
                   <h3><?php the_title(); ?></h3>
                   <p><?php echo esc_html( wp_trim_words( get_the_excerpt(), 28 ) ); ?></p>
                   <span class="bl-more"><?php echo esc_html( isset( $b['read_more'] ) ? $b['read_more'] : 'Read the note' ); ?>
@@ -102,20 +124,25 @@ $hero_img = ! empty( $b['hero_img'] ) ? $b['hero_img'] : get_theme_mod( 'rr_blog
       else :
           ?>
           <p><?php echo esc_html( isset( $b['empty_msg'] ) ? $b['empty_msg'] : 'No articles yet. Add your first one under Posts.' ); ?></p>
-        <?php endif; ?>
+      <?php endif; ?>
     </div>
 
-    <div class="bl-pager">
-      <?php
-      the_posts_pagination(
-          array(
-              'mid_size'  => 1,
-              'prev_text' => esc_html__( 'Previous', 'realtor-raihan' ),
-              'next_text' => esc_html__( 'Next', 'realtor-raihan' ),
-          )
-      );
-      ?>
-    </div>
+    <?php if ( $blog_query->max_num_pages > 1 ) : ?>
+      <div class="bl-pager">
+        <?php
+        echo paginate_links(
+            array(
+                'total'     => $blog_query->max_num_pages,
+                'current'   => max( 1, $paged ),
+                'mid_size'  => 1,
+                'prev_text' => esc_html__( 'Previous', 'realtor-raihan' ),
+                'next_text' => esc_html__( 'Next', 'realtor-raihan' ),
+            )
+        );
+        ?>
+      </div>
+    <?php endif; ?>
+    <?php wp_reset_postdata(); ?>
   </div>
 </section>
 
