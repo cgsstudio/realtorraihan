@@ -642,8 +642,8 @@
    ============================================================ */
 .rr-speed-dial {
   position: fixed;
-  right: 25px;
-  bottom: 25px;
+  right: clamp(18px, 2.2vw, 24px);
+  bottom: clamp(76px, 8.5vw, 88px);
   z-index: 9999;
   display: flex;
   flex-direction: column;
@@ -813,16 +813,18 @@
   transform: scale(1) rotate(0deg);
 }
 
-/* Move Back-To-Top button to bottom-left so it never clashes */
+/* Back-To-Top button on right side, aligned neatly below the floating social dial */
 .ft__fab {
-  left: clamp(16px, 2.4vw, 30px) !important;
-  right: auto !important;
+  left: auto !important;
+  right: clamp(22px, 2.4vw, 28px) !important;
+  bottom: clamp(16px, 2.2vw, 22px) !important;
+  z-index: 9998 !important;
 }
 
 @media (max-width: 560px) {
   .rr-speed-dial {
-    right: 18px;
-    bottom: 18px;
+    right: 14px !important;
+    bottom: 68px !important;
   }
   .rr-speed-dial__btn {
     width: 52px;
@@ -831,6 +833,12 @@
   .rr-speed-dial__icon {
     width: 44px;
     height: 44px;
+  }
+  .ft__fab {
+    right: 18px !important;
+    bottom: 14px !important;
+    width: 44px !important;
+    height: 44px !important;
   }
 }
 
