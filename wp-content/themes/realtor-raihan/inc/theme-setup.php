@@ -186,3 +186,20 @@ function rr_primary_menu( $index_start = 0 ) {
 		$i++;
 	}
 }
+
+/**
+ * Article URLs stay short: /golden-visa/ rather than /2026/01/30/golden-visa/.
+ * Matches the approved site's URLs and keeps the blog links readable.
+ */
+
+add_action(
+	'init',
+	function () {
+		if ( get_option( 'rr_permalinks_set' ) ) {
+			return;
+		}
+		update_option( 'permalink_structure', '/%postname%/' );
+		update_option( 'rr_permalinks_set', 1 );
+		flush_rewrite_rules( false );
+	}
+);

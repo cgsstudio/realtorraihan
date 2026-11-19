@@ -21,6 +21,64 @@ $icons = array(
 	'bank'       => '<path d="M3 10 12 4l9 6"/><path d="M5 10v9M19 10v9"/><path d="M9 10v9M15 10v9"/><path d="M3 21h18"/>',
 );
 ?>
+<style>
+/* 8th Service Card Wide Layout (Second Screenshot design) */
+.sv__bento > .bento--wide,
+.sv__bento > .bento:last-child,
+.sv__bento > .bento:nth-child(8) {
+  grid-column: span 2 !important;
+}
+
+.sv__bento > .bento--wide .bento__body,
+.sv__bento > .bento:last-child .bento__body,
+.sv__bento > .bento:nth-child(8) .bento__body {
+  display: grid !important;
+  grid-template-columns: auto minmax(0, 1fr) !important;
+  column-gap: clamp(12px, 1.2vw, 16px) !important;
+  align-items: center !important;
+}
+
+.sv__bento > .bento--wide .bento__ico,
+.sv__bento > .bento:last-child .bento__ico,
+.sv__bento > .bento:nth-child(8) .bento__ico {
+  grid-column: 1 !important;
+  grid-row: 1 !important;
+}
+
+.sv__bento > .bento--wide .bento__body > h3,
+.sv__bento > .bento:last-child .bento__body > h3,
+.sv__bento > .bento:nth-child(8) .bento__body > h3 {
+  grid-column: 2 !important;
+  grid-row: 1 !important;
+  margin: 0 !important;
+}
+
+.sv__bento > .bento--wide .bento__body > p,
+.sv__bento > .bento:last-child .bento__body > p,
+.sv__bento > .bento:nth-child(8) .bento__body > p {
+  grid-column: 1 / -1 !important;
+  grid-row: 2 !important;
+  margin-top: clamp(10px, 1.1vw, 14px) !important;
+  max-width: 58ch !important;
+}
+
+@media (max-width: 1024px) {
+  .sv__bento > .bento--wide,
+  .sv__bento > .bento:last-child,
+  .sv__bento > .bento:nth-child(8) {
+    grid-column: span 2 !important;
+  }
+}
+
+@media (max-width: 560px) {
+  .sv__bento > .bento--wide,
+  .sv__bento > .bento:last-child,
+  .sv__bento > .bento:nth-child(8) {
+    grid-column: span 1 !important;
+  }
+}
+</style>
+
 <section class="sv" id="services" aria-labelledby="sv-title">
 
   <div class="sv__bg" aria-hidden="true">
@@ -45,7 +103,7 @@ $icons = array(
       $total_rows = count( $rows );
       foreach ( $rows as $i => $row ) :
           $featured = ! empty( $row['featured'] ) && '0' !== (string) $row['featured'];
-          $is_wide  = ( ! empty( $row['wide'] ) && '0' !== (string) $row['wide'] ) || ( 8 === $total_rows && 7 === $i );
+          $is_wide  = ( ! empty( $row['wide'] ) && '0' !== (string) $row['wide'] ) || ( $i === $total_rows - 1 ) || ( 7 === $i );
           $url      = ! empty( $row['url'] ) ? $row['url'] : rr_anchor( 'contact' );
           $icon_key = isset( $icons[ $row['icon'] ] ) ? $row['icon'] : 'sell';
           $classes  = 'bento';

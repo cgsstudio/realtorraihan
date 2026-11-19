@@ -1,0 +1,83 @@
+/* ============================================================
+   YOUR OWN STYLES - this file loads LAST on every page,
+   so anything you write here overrides the theme.
+
+   The whole design is driven by the variables below.
+   Change a value here and it changes site-wide.
+   Nothing breaks if this file is empty.
+   ============================================================ */
+
+:root{
+  /* ----- brand colours ----- */
+  /* --navy:      #0B1F3A;   main dark colour (header, dark sections) */
+  /* --navy-card: #12294B;   raised cards on navy                      */
+  /* --gold:      #C8A34D;   accent colour (buttons, small labels)    */
+  /* --gold-lt:   #DDBB72;   accent on hover                          */
+  /* --cream:     #F6F5F0;   light section background                 */
+  /* --ink:       #0B1F3A;   headings on light background             */
+  /* --ink-body:  #4A5566;   body text on light background            */
+
+  /* ----- fonts ----- */
+  /* --display: "Vend Sans", Helvetica, Arial, sans-serif;   headings */
+  /* --body:    "Zalando Sans", Helvetica, Arial, sans-serif;  text  */
+
+  /* ----- corners ----- */
+  /* --r-lg: 22px;   card / image corner radius */
+}
+
+/* 8th Service Card Wide Layout (Second Screenshot design) */
+.sv__bento > .bento--wide,
+.sv__bento > .bento:last-child,
+.sv__bento > .bento:nth-child(8) {
+  grid-column: span 2 !important;
+}
+
+.sv__bento > .bento--wide .bento__body,
+.sv__bento > .bento:last-child .bento__body,
+.sv__bento > .bento:nth-child(8) .bento__body {
+  display: grid !important;
+  grid-template-columns: auto minmax(0, 1fr) !important;
+  column-gap: clamp(12px, 1.2vw, 16px) !important;
+  align-items: center !important;
+}
+
+.sv__bento > .bento--wide .bento__ico,
+.sv__bento > .bento:last-child .bento__ico,
+.sv__bento > .bento:nth-child(8) .bento__ico {
+  grid-column: 1 !important;
+  grid-row: 1 !important;
+}
+
+.sv__bento > .bento--wide .bento__body > h3,
+.sv__bento > .bento:last-child .bento__body > h3,
+.sv__bento > .bento:nth-child(8) .bento__body > h3 {
+  grid-column: 2 !important;
+  grid-row: 1 !important;
+  margin: 0 !important;
+}
+
+.sv__bento > .bento--wide .bento__body > p,
+.sv__bento > .bento:last-child .bento__body > p,
+.sv__bento > .bento:nth-child(8) .bento__body > p {
+  grid-column: 1 / -1 !important;
+  grid-row: 2 !important;
+  margin-top: clamp(10px, 1.1vw, 14px) !important;
+  max-width: 58ch !important;
+}
+
+@media (max-width: 1024px) {
+  .sv__bento > .bento--wide,
+  .sv__bento > .bento:last-child,
+  .sv__bento > .bento:nth-child(8) {
+    grid-column: span 2 !important;
+  }
+}
+
+@media (max-width: 560px) {
+  .sv__bento > .bento--wide,
+  .sv__bento > .bento:last-child,
+  .sv__bento > .bento:nth-child(8) {
+    grid-column: span 1 !important;
+  }
+}
+

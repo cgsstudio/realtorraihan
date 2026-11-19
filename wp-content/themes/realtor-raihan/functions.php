@@ -9,7 +9,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'RR_VERSION', '1.0.2' );
+define( 'RR_VERSION', '1.0.3' );
 define( 'RR_DIR', get_template_directory() );
 define( 'RR_URI', get_template_directory_uri() );
 
@@ -24,6 +24,8 @@ require_once RR_DIR . '/inc/theme-setup.php';
 require_once RR_DIR . '/inc/page-css.php';
 require_once RR_DIR . '/inc/demo-content.php';
 require_once RR_DIR . '/inc/newsletter.php';
+require_once RR_DIR . '/inc/admin-ux.php';
+require_once RR_DIR . '/inc/page-editor.php';
 
 /**
  * Assets.
@@ -56,6 +58,9 @@ function rr_assets() {
 		$css['rr-post'] = 'post.css';
 	}
 
+	// custom.css and custom.js load last, so the client's own CSS/JS wins.
+	$css['rr-custom'] = 'custom.css';
+
 	$i = 0;
 	foreach ( $css as $handle => $file ) {
 		wp_enqueue_style( $handle, RR_URI . '/assets/css/' . $file, array(), RR_VERSION );
@@ -63,6 +68,7 @@ function rr_assets() {
 	}
 
 	wp_enqueue_script( 'rr-chrome', RR_URI . '/assets/js/chrome.js', array(), RR_VERSION, true );
+	wp_enqueue_script( 'rr-custom', RR_URI . '/assets/js/custom.js', array(), RR_VERSION, true );
 
 	if ( is_front_page() ) {
 		$js = array(

@@ -25,6 +25,24 @@ dashboard.
    the six approved blog articles with their images.
 5. Check Settings > Reading: Front page shows "Home", Posts page shows "Blog".
 
+== Editing Home and About from the page itself ==
+
+Open Pages > Home > Edit (or About > Edit) and the page opens on the classic
+screen with a "Content of this page" box holding every field of that page,
+grouped in the same order as the website: hero, introduction, stats, services,
+testimonials, FAQ, contact, and for About: banner, sections, points, closing.
+
+Change any box and press Update. The website changes immediately, and a
+"Page content saved" notice confirms it with a link to the result.
+
+Repeatable cards (service cards, testimonials, FAQ, the About points) are edited
+as text blocks: "Title | the rest of the text". Leave a block empty to delete
+that card. Photos, links, section switches and card order live in the full
+screen editor, linked at the top of the box and in the left menu.
+
+The page body itself is kept in sync as readable text, so the page is never
+empty when opened, and the Blog page explains that it lists posts automatically.
+
 == Where to edit what ==
 
 * Home Page (left menu)
@@ -65,6 +83,21 @@ If the host has not enabled PHP mail yet, the message is still stored and the
 Emailed column shows a dash. Enabling PHP mail, or installing any SMTP plugin,
 is enough to start delivering them. Newsletter signups are stored in the
 "rr_subscribers" option and emailed to the same address.
+
+== Editing the code yourself (HTML / CSS / JS) ==
+
+You do not need PHP to change this theme. See EXAMPLES.md for the long version.
+
+  assets/css/custom.css   your CSS, loaded last on every page, wins over the theme
+  assets/js/custom.js     your JavaScript, loaded last on every page
+  assets/css/*.css        the design itself, one file per section
+  assets/js/*.js          one script per section (slider, accordion, filters...)
+  parts/*.php             the HTML of each section with a few PHP print calls
+
+Colours, fonts and corner radius are CSS variables in base.css, so most design
+changes are one line inside custom.css:
+
+  :root{ --gold: #C9A227; }
 
 == Photos ==
 
