@@ -589,3 +589,17 @@ function rr_seed_default_cpts() {
 	update_option( 'rr_cpt_seeded_v1', 1 );
 }
 add_action( 'init', 'rr_seed_default_cpts', 20 );
+
+/**
+ * Sync FAQ rows so get_option('rr_home_faq') always reflects updated questions.
+ */
+function rr_sync_faq_rows_v2() {
+	if ( ! get_option( 'rr_faq_updated_v2' ) ) {
+		$d = rr_home_defaults();
+		if ( ! empty( $d['faq'] ) ) {
+			update_option( 'rr_home_faq', $d['faq'] );
+		}
+		update_option( 'rr_faq_updated_v2', 1 );
+	}
+}
+add_action( 'init', 'rr_sync_faq_rows_v2', 25 );

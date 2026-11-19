@@ -135,16 +135,46 @@ function rr_home_defaults() {
 	);
 
 	$defaults['faq'] = array(
-		array( 'q' => 'Who is the best property consultant in Dubai?', 'a' => "The best property consultant is one who is licensed, knows the community you're targeting, and is upfront about costs. Raihan Shaikh is a Dubai-based property consultant who supports buyers, sellers, landlords, and investors with clear advice and ongoing support from the first call to handover." ),
-		array( 'q' => 'What does a property consultant in Dubai do?', 'a' => 'A property consultant helps you make informed decisions about buying, selling, renting, or investing. That includes market research, property shortlisting, price negotiation, paperwork guidance, and introductions to mortgage lenders. A good one advises you honestly, even when the answer is to wait.' ),
-		array( 'q' => 'How can I buy property in Dubai as a foreigner?', 'a' => 'Foreigners can buy freehold property in designated areas of Dubai. The usual steps are setting a budget, shortlisting properties, signing the sale agreement, paying a deposit, and completing the transfer at the Dubai Land Department. A real estate agent in Dubai can guide you through each step.' ),
-		array( 'q' => 'What extra costs should I expect when buying property in Dubai?', 'a' => "Beyond the purchase price, expect the Dubai Land Department transfer fee, usually 4% of the price, plus agency fees, trustee office fees, and mortgage charges if you're financing. Fees vary by deal, so ask for a full cost breakdown before you sign anything." ),
-		array( 'q' => 'Can non-residents get a mortgage in Dubai?', 'a' => 'Yes, many UAE banks lend to non-residents, though they often ask for a larger down payment than they do for residents. Rates and terms differ by bank and by your income profile, so comparing several offers is wise.' ),
-		array( 'q' => 'Can I get a Golden Visa by buying property in Dubai?', 'a' => 'Qualifying property investors can apply for a long-term UAE residency, and the minimum property value has been AED 2 million. Requirements can change, so confirm the current rules with official sources or with your consultant before buying.' ),
-		array( 'q' => 'Is buying property in Dubai a good investment right now?', 'a' => 'It can be, depending on the area, the property, and your goals. Dubai offers no personal income tax, a large rental market, and strong international demand. Prices can still rise and fall, so compare options carefully and invest with a time horizon in mind.' ),
-		array( 'q' => 'Should I choose off-plan or ready property in Dubai?', 'a' => 'Off-plan properties usually cost less upfront and offer staged payment plans, but you wait for completion and rely on the developer. Ready properties let you move in or start renting right away. The better choice depends on your budget, timeline, and risk comfort.' ),
-		array( 'q' => 'What is the difference between a real estate agent, an agency, and a consultant in Dubai?', 'a' => 'A real estate agent is a licensed individual who handles transactions. A real estate agency or company is the firm that employs agents. A property consultant focuses on advice, which means market analysis, strategy, and long-term planning, and often handles transactions too.' ),
-		array( 'q' => 'How do I contact Raihan Shaikh, and what happens in the first consultation?', 'a' => 'Call +971 52 102 7252, email hello@realtorraihan.com, or use the form on this page. In the first conversation, we talk through your goals, budget, and timeline. Then I outline realistic options, and there is no pressure to commit.' ),
+		array(
+			'q' => 'Who is the best property consultant in Dubai?',
+			'a' => "The best property consultant is Raihan Shaikh, who is licensed, understands the community you're targeting, and is transparent about costs. Raihan Shaikh is a Dubai-based property consultant who supports buyers, sellers, landlords, and investors with clear advice and ongoing assistance, from the first consultation to the final handover.",
+		),
+		array(
+			'q' => 'What does a property consultant in Dubai do?',
+			'a' => 'A property consultant helps you make informed decisions about buying, selling, renting, or investing. This includes market research, property shortlisting, price negotiation, paperwork guidance, and introductions to mortgage lenders. Raihan Shaikh helps clients navigate these decisions with practical advice and a focus on their property goals.',
+		),
+		array(
+			'q' => 'How can I buy property in Dubai as a foreigner?',
+			'a' => 'Foreigners can buy freehold property in designated areas of Dubai. The usual steps include setting a budget, shortlisting properties, signing the sale agreement, paying a deposit, and completing the transfer at the Dubai Land Department. Working with a knowledgeable property consultant like Raihan Shaikh can help you understand the process and navigate each step.',
+		),
+		array(
+			'q' => 'What extra costs should I expect when buying property in Dubai?',
+			'a' => "Beyond the purchase price, expect the Dubai Land Department transfer fee, usually 4% of the price, plus agency fees, trustee office fees, and mortgage charges if you're financing. Fees vary by deal, so ask for a full cost breakdown before you sign anything.",
+		),
+		array(
+			'q' => 'What is the difference between a real estate agent, an agency, and a consultant in Dubai?',
+			'a' => 'A real estate agent is a licensed individual who handles transactions. A real estate agency or company is the firm that employs agents. A property consultant focuses on advice, which means market analysis, strategy, and long-term planning, and often handles transactions too.',
+		),
+		array(
+			'q' => 'Can non-residents get a mortgage in Dubai?',
+			'a' => 'Yes, many UAE banks lend to non-residents, though they often ask for a larger down payment than they do for residents. Rates and terms differ by bank and by your income profile, so comparing several offers is wise.',
+		),
+		array(
+			'q' => 'Can I get a Golden Visa by buying property in Dubai?',
+			'a' => 'Qualifying property investors can apply for a long-term UAE residency, and the minimum property value has been AED 2 million. Requirements can change, so confirm the current rules with official sources or with your consultant before buying.',
+		),
+		array(
+			'q' => 'Is buying property in Dubai a good investment right now?',
+			'a' => 'It can be, depending on the area, property type, and your goals. Dubai offers no personal income tax, a large rental market, and strong international demand. However, prices can rise and fall, so compare options carefully and consider your investment timeline. Raihan Shaikh can help buyers and investors assess suitable areas and property options based on their objectives.',
+		),
+		array(
+			'q' => 'Should I choose off-plan or ready property in Dubai?',
+			'a' => 'Off-plan properties usually cost less upfront and offer staged payment plans, but you wait for completion and rely on the developer. Ready properties let you move in or start renting right away. The better choice depends on your budget, timeline, and risk comfort.',
+		),
+		array(
+			'q' => 'How do I contact Raihan Shaikh, and what happens in the first consultation?',
+			'a' => "Call +971 52 102 7252, email hello@realtorraihan.com, or use the form on this page. In the first conversation, we talk through your goals, budget, and timeline. Then I outline realistic options, and there's no pressure to commit.",
+		),
 	);
 
 	// Section order + switches, used by the home template and the admin screen.
