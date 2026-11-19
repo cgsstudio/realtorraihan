@@ -843,29 +843,36 @@
 }
 
 /* ============================================================
-   INTRO STATS BAR (NUMBER ON TOP, 2-LINE CONTENT BELOW)
+   INTRO STATS BAR (NUMBER ON TOP, 2-LINE CONTENT BELOW - CENTERED)
    ============================================================ */
 .s2__statsGrid {
   align-items: start !important;
+  justify-items: center !important;
 }
 
 .stat2 {
   display: flex !important;
   flex-direction: column !important;
-  align-items: flex-start !important;
+  align-items: center !important;
+  text-align: center !important;
   gap: clamp(10px, 1.3vw, 16px) !important;
+  width: 100% !important;
 }
 
 .stat2__num {
   line-height: 1 !important;
   font-size: clamp(2.8rem, 4.4vw, 4.2rem) !important;
   margin-bottom: 0 !important;
+  min-width: 0 !important;
+  text-align: center !important;
+  width: 100% !important;
 }
 
 .stat2__label {
   padding-top: 0 !important;
   min-width: 0 !important;
   width: 100% !important;
+  text-align: center !important;
 }
 
 .stat2__label b {
@@ -876,6 +883,7 @@
   margin-bottom: 6px !important;
   line-height: 1.35 !important;
   white-space: normal !important;
+  text-align: center !important;
 }
 
 .stat2__label span {
@@ -884,4 +892,6 @@
   line-height: 1.55 !important;
   color: var(--ink-body) !important;
   max-width: 28ch !important;
+  margin-inline: auto !important;
+  text-align: center !important;
 }
