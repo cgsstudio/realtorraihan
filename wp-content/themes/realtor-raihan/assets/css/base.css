@@ -280,24 +280,23 @@ a {
     box-shadow .42s var(--ease-out);
 }
 
-/* every pill gets the same hover language: an outline draws itself outward
-   from the button's edge, the label lifts, and the arrow slides on the diagonal */
+/* every pill gets an animated border that scales in and stays on hover */
 .pill::after {
   content: "";
   position: absolute;
-  inset: 0;
+  inset: -1.5px;
   border-radius: inherit;
   pointer-events: none;
   border: 1.5px solid currentColor;
   opacity: 0;
-  transform: scale(.90);
-  transition: opacity .45s var(--ease-out), transform .55s var(--ease-out);
+  transform: scale(.94);
+  transition: opacity .35s var(--ease-out), transform .35s var(--ease-out);
 }
 
 .pill:hover::after,
 .pill:focus-visible::after {
-  opacity: .62;
-  transform: scale(1.075)
+  opacity: 1;
+  transform: scale(1);
 }
 
 .pill:focus-visible {

@@ -127,4 +127,211 @@
   display: inline-block !important;
 }
 
+/* ============================================================
+   BUTTON HOVER ANIMATION & PERSISTENT BORDER
+   ============================================================ */
+.pill,
+.ct__submit {
+  position: relative !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 10px !important;
+  font-family: var(--body) !important;
+  font-size: .875rem !important;
+  font-weight: 600 !important;
+  line-height: 1 !important;
+  padding: 16px 28px !important;
+  border-radius: var(--r-chip) !important;
+  border: 1.5px solid transparent !important;
+  text-decoration: none !important;
+  cursor: pointer !important;
+  white-space: nowrap !important;
+  isolation: isolate !important;
+  overflow: visible !important;
+  transition: background .35s var(--ease-out),
+              color .35s var(--ease-out),
+              border-color .35s var(--ease-out),
+              transform .35s var(--ease-out),
+              box-shadow .35s var(--ease-out) !important;
+}
+
+/* Animated border element that stays firmly on hover */
+.pill::after,
+.ct__submit::after {
+  content: "" !important;
+  position: absolute !important;
+  inset: -1.5px !important;
+  border-radius: inherit !important;
+  pointer-events: none !important;
+  border: 1.5px solid currentColor !important;
+  opacity: 0 !important;
+  transform: scale(.94) !important;
+  transition: opacity .35s var(--ease-out), transform .35s var(--ease-out) !important;
+}
+
+.pill:hover::after,
+.pill:focus-visible::after,
+.ct__submit:hover::after,
+.ct__submit:focus-visible::after {
+  opacity: 1 !important;
+  transform: scale(1) !important;
+}
+
+/* Arrow smooth transition */
+.pill svg,
+.ct__submit svg {
+  flex: none !important;
+  transition: transform .35s var(--ease-out), color .35s var(--ease-out), stroke .35s var(--ease-out) !important;
+}
+
+.pill:hover svg,
+.pill:focus-visible svg,
+.ct__submit:hover svg,
+.ct__submit:focus-visible svg {
+  transform: translate(3px, -3px) scale(1.08) !important;
+}
+
+.pill:active,
+.ct__submit:active {
+  transform: translateY(0) scale(.98) !important;
+}
+
+/* 1. Gold Button (Header CTA, About CTA, Contact Submit) */
+.pill--gold,
+.ct__submit {
+  background: var(--gold) !important;
+  color: var(--gold-ink) !important;
+  border-color: var(--gold) !important;
+  box-shadow: 0 4px 14px -3px rgba(200, 163, 77, .35) !important;
+}
+.pill--gold::after,
+.ct__submit::after {
+  border-color: var(--gold) !important;
+}
+.pill--gold:hover,
+.pill--gold:focus-visible,
+.ct__submit:hover,
+.ct__submit:focus-visible {
+  background: transparent !important;
+  color: var(--gold) !important;
+  border-color: var(--gold) !important;
+  transform: translateY(-3px) !important;
+  box-shadow: 0 12px 28px -6px rgba(200, 163, 77, .45), 0 0 16px rgba(200, 163, 77, .25) !important;
+}
+.pill--gold:hover svg,
+.pill--gold:focus-visible svg,
+.ct__submit:hover svg,
+.ct__submit:focus-visible svg {
+  color: var(--gold) !important;
+  stroke: var(--gold) !important;
+}
+
+/* 2. Navy Button (Intro CTA, About CTA) */
+.pill--navy {
+  background: var(--navy) !important;
+  color: #fff !important;
+  border-color: var(--navy) !important;
+  box-shadow: 0 4px 14px -3px rgba(11, 31, 58, .35) !important;
+}
+.pill--navy::after {
+  border-color: var(--navy) !important;
+}
+.pill--navy:hover,
+.pill--navy:focus-visible {
+  background: transparent !important;
+  color: var(--navy) !important;
+  border-color: var(--navy) !important;
+  transform: translateY(-3px) !important;
+  box-shadow: 0 12px 28px -6px rgba(11, 31, 58, .35) !important;
+}
+.pill--navy:hover svg,
+.pill--navy:focus-visible svg {
+  color: var(--navy) !important;
+  stroke: var(--navy) !important;
+}
+
+/* 3. Cream Button (Hero CTA 1) */
+.pill--cream {
+  background: var(--cream) !important;
+  color: var(--ink) !important;
+  border-color: var(--cream) !important;
+}
+.pill--cream::after {
+  border-color: #fff !important;
+}
+.pill--cream:hover,
+.pill--cream:focus-visible {
+  background: transparent !important;
+  color: #fff !important;
+  border-color: #fff !important;
+  transform: translateY(-3px) !important;
+  box-shadow: 0 12px 28px -6px rgba(255, 255, 255, .3) !important;
+}
+.pill--cream:hover svg,
+.pill--cream:focus-visible svg {
+  color: #fff !important;
+  stroke: #fff !important;
+}
+
+/* 4. Gold Line Button (Hero CTA 2) */
+.pill--gold-line {
+  background: transparent !important;
+  color: var(--gold) !important;
+  border-color: var(--gold) !important;
+}
+.pill--gold-line::after {
+  border-color: var(--gold) !important;
+}
+.pill--gold-line:hover,
+.pill--gold-line:focus-visible {
+  background: var(--gold) !important;
+  color: var(--gold-ink) !important;
+  border-color: var(--gold) !important;
+  transform: translateY(-3px) !important;
+  box-shadow: 0 12px 28px -6px rgba(200, 163, 77, .45) !important;
+}
+.pill--gold-line:hover svg,
+.pill--gold-line:focus-visible svg {
+  color: var(--gold-ink) !important;
+  stroke: var(--gold-ink) !important;
+}
+
+/* 5. Ghost Button (WhatsApp CTA) */
+.pill--ghost {
+  background: transparent !important;
+  color: #fff !important;
+  border-color: rgba(255, 255, 255, .32) !important;
+}
+.pill--ghost::after {
+  border-color: var(--gold) !important;
+}
+.pill--ghost:hover,
+.pill--ghost:focus-visible {
+  background: rgba(200, 163, 77, .12) !important;
+  color: var(--gold) !important;
+  border-color: var(--gold) !important;
+  transform: translateY(-3px) !important;
+  box-shadow: 0 12px 28px -6px rgba(200, 163, 77, .35) !important;
+}
+.pill--ghost:hover svg,
+.pill--ghost:focus-visible svg {
+  color: var(--gold) !important;
+  stroke: var(--gold) !important;
+}
+
+/* 6. Outline Button */
+.pill--outline {
+  background: transparent !important;
+  color: var(--ink) !important;
+  border-color: var(--line-navy) !important;
+}
+.pill--outline:hover,
+.pill--outline:focus-visible {
+  border-color: var(--navy) !important;
+  color: var(--navy) !important;
+  transform: translateY(-3px) !important;
+}
+
+
 
