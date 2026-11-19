@@ -33,7 +33,7 @@ if ( ! defined( 'ABSPATH' ) ) {
  */
 function rr_managed_slug( $post_id ) {
 	$slug = get_post_field( 'post_name', $post_id );
-	return in_array( $slug, array( 'home', 'about' ), true ) ? $slug : '';
+	return in_array( $slug, array( 'home', 'about', 'contact' ), true ) ? $slug : '';
 }
 
 /**
@@ -43,15 +43,20 @@ function rr_managed_slug( $post_id ) {
  */
 function rr_page_owner() {
 	return array(
-		'home'  => array(
+		'home'    => array(
 			'action' => 'rr_home_save',
 			'label'  => __( 'Home Page', 'realtor-raihan' ),
 			'url'    => 'admin.php?page=rr-home',
 		),
-		'about' => array(
+		'about'   => array(
 			'action' => 'rr_about_save',
 			'label'  => __( 'About page', 'realtor-raihan' ),
 			'url'    => 'admin.php?page=rr-about',
+		),
+		'contact' => array(
+			'action' => 'rr_contact_save',
+			'label'  => __( 'Contact page', 'realtor-raihan' ),
+			'url'    => 'admin.php?page=rr-contact',
 		),
 	);
 }
@@ -124,6 +129,21 @@ function rr_field_label( $key ) {
 		'close_p'       => 'Closing: sentence',
 		'close_btn'     => 'Closing: gold button text',
 		'close_wa'      => 'Closing: WhatsApp button text',
+		'phone'         => 'Phone number',
+		'call_lbl'      => 'Phone button label (e.g. Call me)',
+		'whatsapp'      => 'WhatsApp number (with country code, digits only)',
+		'wa_lbl'        => 'WhatsApp button label (e.g. WhatsApp)',
+		'wa_sub'        => 'WhatsApp button subtext (e.g. Message me)',
+		'email'         => 'Email address',
+		'email_lbl'     => 'Email button label (e.g. Email)',
+		'area'          => 'Office location / Based in',
+		'area_lbl'      => 'Office location label (e.g. Based in)',
+		'form_h'        => 'Contact form heading',
+		'form_p'        => 'Contact form subtitle',
+		'btn_text'      => 'Submit button text',
+		'fine_text'     => 'Privacy fine print under button',
+		'done_h'        => 'Confirmation heading (after submit)',
+		'done_p'        => 'Confirmation message (after submit)',
 	);
 	if ( isset( $map[ $key ] ) ) {
 		return $map[ $key ];
@@ -206,6 +226,19 @@ function rr_page_fields( $slug ) {
 		return $fields;
 	}
 
+	if ( 'contact' === $slug ) {
+		$data     = rr_contact();
+		$defaults = rr_contact_defaults();
+		foreach ( $defaults as $key => $default ) {
+			$fields[ $key ] = array(
+				'value' => isset( $data[ $key ] ) ? (string) $data[ $key ] : (string) $default,
+				'type'  => in_array( $key, array( 'title', 'lede', 'form_p', 'fine_text', 'done_p' ), true ) ? 'area' : 'text',
+				'help'  => '',
+			);
+		}
+		return $fields;
+	}
+
 	$data     = rr_about();
 	$defaults = rr_about_defaults();
 	foreach ( $defaults as $key => $default ) {
@@ -228,6 +261,13 @@ function rr_page_fields( $slug ) {
  * @return array prefix => heading
  */
 function rr_page_groups( $slug ) {
+	if ( 'contact' === $slug ) {
+		return array(
+			'eyebrow|title|lede' => __( 'Heading & Introduction', 'realtor-raihan' ),
+			'phone|call_lbl|whatsapp|wa_lbl|wa_sub|email|email_lbl|area|area_lbl' => __( 'Direct Channels & Office Details', 'realtor-raihan' ),
+			'form_h|form_p|btn_text|fine_text|done_h|done_p' => __( 'Enquiry Form & Confirmation', 'realtor-raihan' ),
+		);
+	}
 	if ( 'about' === $slug ) {
 		return array(
 			''       => __( 'Page banner', 'realtor-raihan' ),
@@ -257,6 +297,9 @@ function rr_page_groups( $slug ) {
  * @return array key => array( heading, group, columns, help )
  */
 function rr_page_repeaters( $slug ) {
+	if ( 'contact' === $slug ) {
+		return array();
+	}
 	if ( 'about' === $slug ) {
 		return array(
 			'features' => array(
@@ -296,6 +339,9 @@ function rr_page_repeaters( $slug ) {
  * @return array group => rows.
  */
 function rr_page_repeater_rows( $slug ) {
+	if ( 'contact' === $slug ) {
+		return array();
+	}
 	if ( 'about' === $slug ) {
 		$data = rr_about();
 		return array( 'features' => isset( $data['features'] ) ? (array) $data['features'] : array() );
@@ -480,8 +526,8 @@ function rr_page_content_box( $post ) {
 				}
 				continue;
 			}
-			if ( 'tag|h2|p1|p2|quote|btn|photo' === $prefix ) {
-				if ( in_array( $key, array( 'tag', 'h2', 'p1', 'p2', 'quote', 'btn', 'photo' ), true ) ) {
+			if ( strpos( $prefix, '|' ) !== false ) {
+				if ( in_array( $key, explode( '|', $prefix ), true ) ) {
 					$part[ $key ] = $f;
 				}
 				continue;
@@ -579,8 +625,8 @@ function rr_page_body_text( $slug ) {
 			$match = false;
 			if ( '' === $prefix ) {
 				$match = in_array( $key, array( 'eyebrow', 'title' ), true );
-			} elseif ( 'tag|h2|p1|p2|quote|btn|photo' === $prefix ) {
-				$match = in_array( $key, array( 'tag', 'h2', 'p1', 'p2', 'quote', 'btn', 'photo' ), true );
+			} elseif ( strpos( $prefix, '|' ) !== false ) {
+				$match = in_array( $key, explode( '|', $prefix ), true );
 			} else {
 				$match = str_starts_with( $key, $prefix );
 			}
@@ -701,6 +747,28 @@ function rr_managed_page_save( $post_id, $post ) {
 				}
 				update_option( 'rr_home_' . $group, $rows );
 			}
+			$did_save = true;
+		} elseif ( 'contact' === $slug ) {
+			$clean = array();
+			$data  = rr_contact();
+			foreach ( $text as $key => $value ) {
+				$key           = sanitize_key( $key );
+				$clean[ $key ] = wp_kses_post( trim( (string) $value ) );
+			}
+			$merged = array_merge( $data, $clean );
+			update_option( 'rr_contact_page', $merged );
+
+			// Sync with home options and theme_mods
+			if ( ! empty( $clean['eyebrow'] ) ) { update_option( 'rr_home_ct_eyebrow', $clean['eyebrow'] ); }
+			if ( ! empty( $clean['title'] ) )   { update_option( 'rr_home_ct_title', $clean['title'] ); }
+			if ( ! empty( $clean['lede'] ) )    { update_option( 'rr_home_ct_lede', $clean['lede'] ); }
+			if ( ! empty( $clean['form_h'] ) )  { update_option( 'rr_home_ct_form_h', $clean['form_h'] ); }
+			if ( ! empty( $clean['form_p'] ) )  { update_option( 'rr_home_ct_form_p', $clean['form_p'] ); }
+			if ( ! empty( $clean['phone'] ) )   { set_theme_mod( 'rr_phone', $clean['phone'] ); }
+			if ( ! empty( $clean['whatsapp'] ) ){ set_theme_mod( 'rr_whatsapp', $clean['whatsapp'] ); }
+			if ( ! empty( $clean['email'] ) )   { set_theme_mod( 'rr_email', $clean['email'] ); }
+			if ( ! empty( $clean['area'] ) )    { set_theme_mod( 'rr_area', $clean['area'] ); }
+
 			$did_save = true;
 		} else {
 			$clean = array();

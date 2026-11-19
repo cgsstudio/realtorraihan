@@ -9,7 +9,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'RR_VERSION', '1.0.22' );
+define( 'RR_VERSION', '1.0.23' );
 define( 'RR_DIR', get_template_directory() );
 define( 'RR_URI', get_template_directory_uri() );
 
@@ -18,6 +18,7 @@ require_once RR_DIR . '/inc/keywords.php';
 require_once RR_DIR . '/inc/customizer.php';
 require_once RR_DIR . '/inc/home-fields.php';
 require_once RR_DIR . '/inc/about-fields.php';
+require_once RR_DIR . '/inc/contact-fields.php';
 require_once RR_DIR . '/inc/contact.php';
 require_once RR_DIR . '/inc/nav-walker.php';
 require_once RR_DIR . '/inc/theme-setup.php';
