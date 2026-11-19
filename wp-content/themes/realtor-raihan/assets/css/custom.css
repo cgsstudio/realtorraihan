@@ -135,6 +135,85 @@
 }
 
 /* ============================================================
+   TESTIMONIALS SLIDER CONTROLS (MOBILE & TABLET RESPONSIVE FIX)
+   ============================================================ */
+@media (max-width: 1024px) {
+  .ts__stage {
+    position: relative !important;
+    padding-bottom: 74px !important;
+    margin-bottom: 8px !important;
+    min-height: 0 !important;
+  }
+  .ts__arrow {
+    position: absolute !important;
+    top: auto !important;
+    bottom: 0 !important;
+    transform: none !important;
+    width: 48px !important;
+    height: 48px !important;
+    border-radius: 50% !important;
+    display: grid !important;
+    place-items: center !important;
+    background: rgba(22, 46, 81, 0.9) !important;
+    border: 1px solid rgba(255, 255, 255, 0.24) !important;
+    color: #ffffff !important;
+    cursor: pointer !important;
+    z-index: 10 !important;
+    transition: background .25s var(--ease-out), border-color .25s var(--ease-out), color .25s var(--ease-out), transform .25s var(--ease-out) !important;
+  }
+  .ts__arrow:hover {
+    background: var(--gold) !important;
+    border-color: var(--gold) !important;
+    color: var(--navy) !important;
+    transform: scale(1.08) !important;
+  }
+  .ts__arrow--prev {
+    left: calc(50% - 56px) !important;
+    right: auto !important;
+  }
+  .ts__arrow--next {
+    left: calc(50% + 8px) !important;
+    right: auto !important;
+  }
+  .ts__note {
+    clear: both !important;
+    position: relative !important;
+    z-index: 1 !important;
+    margin-top: 24px !important;
+    padding-inline: 16px !important;
+    text-align: center !important;
+  }
+}
+
+@media (max-width: 768px) {
+  .ts__stage {
+    padding-bottom: 68px !important;
+  }
+  .ts__track {
+    height: auto !important;
+    min-height: 280px !important;
+    padding-bottom: 12px !important;
+  }
+  .ts__arrow {
+    width: 44px !important;
+    height: 44px !important;
+    bottom: 0 !important;
+  }
+  .ts__arrow--prev {
+    left: calc(50% - 52px) !important;
+  }
+  .ts__arrow--next {
+    left: calc(50% + 8px) !important;
+  }
+  .ts__note {
+    margin-top: 20px !important;
+    font-size: 0.72rem !important;
+    line-height: 1.55 !important;
+  }
+}
+
+
+/* ============================================================
    BUTTON STYLES (CLEAN HOVER, NORMAL SHADOW, NO SHINE/OUTER RING)
    ============================================================ */
 .pill,
@@ -524,3 +603,376 @@
   padding: 0 !important;
   display: inline-block !important;
 }
+
+/* ============================================================
+   TESTIMONIALS SLIDER CONTROLS (MOBILE & TABLET RESPONSIVE FIX)
+   ============================================================ */
+@media (max-width: 1024px) {
+  .ts__stage {
+    position: relative !important;
+    padding-bottom: 74px !important;
+    margin-bottom: 8px !important;
+    min-height: 0 !important;
+  }
+  .ts__arrow {
+    position: absolute !important;
+    top: auto !important;
+    bottom: 0 !important;
+    transform: none !important;
+    width: 48px !important;
+    height: 48px !important;
+    border-radius: 50% !important;
+    display: grid !important;
+    place-items: center !important;
+    background: rgba(22, 46, 81, 0.9) !important;
+    border: 1px solid rgba(255, 255, 255, 0.24) !important;
+    color: #ffffff !important;
+    cursor: pointer !important;
+    z-index: 10 !important;
+    transition: background .25s var(--ease-out), border-color .25s var(--ease-out), color .25s var(--ease-out), transform .25s var(--ease-out) !important;
+  }
+  .ts__arrow:hover {
+    background: var(--gold) !important;
+    border-color: var(--gold) !important;
+    color: var(--navy) !important;
+    transform: scale(1.08) !important;
+  }
+  .ts__arrow--prev {
+    left: calc(50% - 56px) !important;
+    right: auto !important;
+  }
+  .ts__arrow--next {
+    left: calc(50% + 8px) !important;
+    right: auto !important;
+  }
+  .ts__note {
+    clear: both !important;
+    position: relative !important;
+    z-index: 1 !important;
+    margin-top: 24px !important;
+    padding-inline: 16px !important;
+    text-align: center !important;
+  }
+}
+
+@media (max-width: 768px) {
+  .ts__stage {
+    padding-bottom: 68px !important;
+  }
+  .ts__track {
+    height: auto !important;
+    min-height: 280px !important;
+    padding-bottom: 12px !important;
+  }
+  .ts__arrow {
+    width: 44px !important;
+    height: 44px !important;
+    bottom: 0 !important;
+  }
+  .ts__arrow--prev {
+    left: calc(50% - 52px) !important;
+  }
+  .ts__arrow--next {
+    left: calc(50% + 8px) !important;
+  }
+  .ts__note {
+    margin-top: 20px !important;
+    font-size: 0.72rem !important;
+    line-height: 1.55 !important;
+  }
+}
+
+
+/* ============================================================
+   RESPONSIVE HEADER & MOBILE MENU
+   ============================================================ */
+
+/* Base header layout */
+.hero__bar {
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  z-index: 50 !important;
+  width: 100% !important;
+}
+
+.hero__barInner {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  width: 100% !important;
+}
+
+/* Tablet & Down (<= 1080px): Hide desktop nav, show burger */
+@media (max-width: 1080px) {
+  .nav {
+    display: none !important;
+  }
+  .burger {
+    display: inline-flex !important;
+  }
+  .hero__call span,
+  .hero__callTx small {
+    display: none !important;
+  }
+  .hero__call {
+    padding: 0 !important;
+    background: transparent !important;
+  }
+}
+
+/* Mobile & Small Tablet (<= 768px): Hide desktop CTA in header bar, optimize layout */
+@media (max-width: 768px) {
+  .hero__bar {
+    padding: 10px clamp(12px, 3.5vw, 20px) !important;
+  }
+  .hero__barInner {
+    gap: 8px !important;
+  }
+  .hero__actions .pill--gold {
+    display: none !important;
+  }
+  .hero__actions {
+    gap: 8px !important;
+  }
+  .brand {
+    font-size: 1.05rem !important;
+    gap: 9px !important;
+  }
+  .brand img.brand__mark,
+  .brand__mark {
+    height: 32px !important;
+    width: auto !important;
+  }
+  .brand__sub {
+    font-size: 0.52rem !important;
+    letter-spacing: 0.12em !important;
+    margin-top: 2px !important;
+  }
+  .hero__call i {
+    width: 36px !important;
+    height: 36px !important;
+  }
+  .burger {
+    width: 38px !important;
+    height: 38px !important;
+  }
+}
+
+/* Very small phones (<= 380px) */
+@media (max-width: 380px) {
+  .brand {
+    font-size: 0.95rem !important;
+    gap: 7px !important;
+  }
+  .brand img.brand__mark,
+  .brand__mark {
+    height: 28px !important;
+  }
+  .brand__sub {
+    display: none !important;
+  }
+}
+
+/* Mobile Menu Overlay Styles */
+.mmenu {
+  position: fixed !important;
+  inset: 0 !important;
+  z-index: 99999 !important;
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: flex-start !important;
+  background: rgba(7, 20, 36, 0.98) !important;
+  -webkit-backdrop-filter: blur(25px) !important;
+  backdrop-filter: blur(25px) !important;
+  padding: clamp(70px, 12vh, 90px) clamp(20px, 6vw, 40px) 36px !important;
+  overflow-y: auto !important;
+  -webkit-overflow-scrolling: touch !important;
+  opacity: 0 !important;
+  visibility: hidden !important;
+  transform: translateY(-8px) !important;
+  transition: opacity .35s var(--ease-out), transform .35s var(--ease-out), visibility .35s !important;
+}
+
+.mmenu.is-open {
+  opacity: 1 !important;
+  visibility: visible !important;
+  transform: none !important;
+}
+
+.mmenu > a:not(.pill) {
+  font-family: var(--display) !important;
+  font-size: clamp(1.6rem, 5.5vw, 2.2rem) !important;
+  letter-spacing: -.02em !important;
+  color: #ffffff !important;
+  text-decoration: none !important;
+  padding: 12px 0 !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
+  opacity: 0 !important;
+  transform: translateY(12px) !important;
+  transition: opacity .4s var(--ease-out), transform .4s var(--ease-out), color .25s !important;
+}
+
+.mmenu.is-open > a:not(.pill) {
+  opacity: 1 !important;
+  transform: none !important;
+  transition-delay: calc(var(--i, 0) * 50ms + 60ms) !important;
+}
+
+.mmenu > a:not(.pill):hover,
+.mmenu > a:not(.pill)[aria-current] {
+  color: var(--gold) !important;
+}
+
+.mmenu__x {
+  position: absolute !important;
+  top: 18px !important;
+  right: clamp(16px, 4vw, 28px) !important;
+  width: 42px !important;
+  height: 42px !important;
+  border-radius: 50% !important;
+  border: 1px solid rgba(255, 255, 255, 0.24) !important;
+  background: rgba(255, 255, 255, 0.08) !important;
+  color: #ffffff !important;
+  display: grid !important;
+  place-items: center !important;
+  cursor: pointer !important;
+  transition: background .3s var(--ease-out), transform .3s var(--ease-out) !important;
+}
+
+.mmenu__x:hover {
+  background: rgba(255, 255, 255, 0.18) !important;
+  transform: rotate(90deg) !important;
+}
+
+.mmenu__ctaWrap {
+  margin-top: 22px !important;
+  width: 100% !important;
+  opacity: 0 !important;
+  transform: translateY(12px) !important;
+  transition: opacity .4s var(--ease-out), transform .4s var(--ease-out) !important;
+}
+
+.mmenu.is-open .mmenu__ctaWrap {
+  opacity: 1 !important;
+  transform: none !important;
+  transition-delay: 260ms !important;
+}
+
+.mmenu__ctaWrap .pill--gold {
+  display: flex !important;
+  width: 100% !important;
+  justify-content: center !important;
+  padding: 14px 24px !important;
+  font-size: 0.9rem !important;
+}
+
+.mmenu__foot {
+  margin-top: auto !important;
+  padding-top: 24px !important;
+  border-top: 1px solid rgba(255, 255, 255, 0.08) !important;
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 8px !important;
+  font-size: 0.85rem !important;
+  color: var(--navy-mute) !important;
+  opacity: 0 !important;
+  transform: translateY(10px) !important;
+  transition: opacity .4s var(--ease-out), transform .4s var(--ease-out) !important;
+}
+
+.mmenu.is-open .mmenu__foot {
+  opacity: 1 !important;
+  transform: none !important;
+  transition-delay: 320ms !important;
+}
+
+.mmenu__foot a {
+  font-family: var(--body) !important;
+  font-size: 0.88rem !important;
+  color: var(--gold) !important;
+  text-decoration: none !important;
+  border: 0 !important;
+  padding: 0 !important;
+  display: inline-block !important;
+}
+
+/* ============================================================
+   TESTIMONIALS SLIDER CONTROLS (MOBILE & TABLET RESPONSIVE FIX)
+   ============================================================ */
+@media (max-width: 1024px) {
+  .ts__stage {
+    position: relative !important;
+    padding-bottom: 74px !important;
+    margin-bottom: 8px !important;
+    min-height: 0 !important;
+  }
+  .ts__arrow {
+    position: absolute !important;
+    top: auto !important;
+    bottom: 0 !important;
+    transform: none !important;
+    width: 48px !important;
+    height: 48px !important;
+    border-radius: 50% !important;
+    display: grid !important;
+    place-items: center !important;
+    background: rgba(22, 46, 81, 0.9) !important;
+    border: 1px solid rgba(255, 255, 255, 0.24) !important;
+    color: #ffffff !important;
+    cursor: pointer !important;
+    z-index: 10 !important;
+    transition: background .25s var(--ease-out), border-color .25s var(--ease-out), color .25s var(--ease-out), transform .25s var(--ease-out) !important;
+  }
+  .ts__arrow:hover {
+    background: var(--gold) !important;
+    border-color: var(--gold) !important;
+    color: var(--navy) !important;
+    transform: scale(1.08) !important;
+  }
+  .ts__arrow--prev {
+    left: calc(50% - 56px) !important;
+    right: auto !important;
+  }
+  .ts__arrow--next {
+    left: calc(50% + 8px) !important;
+    right: auto !important;
+  }
+  .ts__note {
+    clear: both !important;
+    position: relative !important;
+    z-index: 1 !important;
+    margin-top: 24px !important;
+    padding-inline: 16px !important;
+    text-align: center !important;
+  }
+}
+
+@media (max-width: 768px) {
+  .ts__stage {
+    padding-bottom: 68px !important;
+  }
+  .ts__track {
+    height: auto !important;
+    min-height: 280px !important;
+    padding-bottom: 12px !important;
+  }
+  .ts__arrow {
+    width: 44px !important;
+    height: 44px !important;
+    bottom: 0 !important;
+  }
+  .ts__arrow--prev {
+    left: calc(50% - 52px) !important;
+  }
+  .ts__arrow--next {
+    left: calc(50% + 8px) !important;
+  }
+  .ts__note {
+    margin-top: 20px !important;
+    font-size: 0.72rem !important;
+    line-height: 1.55 !important;
+  }
+}
+
