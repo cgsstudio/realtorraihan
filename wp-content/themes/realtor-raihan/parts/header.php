@@ -66,6 +66,12 @@
       printf( '<a href="%s" style="--i:3">Contact</a>', esc_url( rr_anchor( 'contact' ) ) ); // phpcs:ignore
   }
   ?>
+  <div class="mmenu__ctaWrap">
+    <a class="pill pill--gold" href="<?php echo esc_url( $cta ? $cta : rr_anchor( 'contact' ) ); ?>">
+      <?php echo esc_html( rr_mod( 'rr_cta_label', 'Book a Free Consultation' ) ); ?>
+      <?php echo rr_arrow(); // phpcs:ignore ?>
+    </a>
+  </div>
   <div class="mmenu__foot">
     <span><?php echo esc_html( rr_area() ); ?></span>
     <a href="<?php echo esc_attr( rr_phone_href() ); ?>"><?php echo esc_html( rr_phone() ); ?></a>
