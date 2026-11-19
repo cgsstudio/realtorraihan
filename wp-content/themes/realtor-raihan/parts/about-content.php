@@ -63,43 +63,7 @@ $icons = array(
   </div>
 </section>
 
-<!-- 3. why choose us -->
-<section class="sec ab-why" aria-labelledby="ab-why-h">
-  <div class="sec__wrap">
-    <div class="ab-why__head">
-      <p class="tag tag--center rv"><?php echo esc_html( $a['why_tag'] ); ?></p>
-      <h2 class="rv" id="ab-why-h"><?php echo wp_kses( $a['why_h2'], array( 'br' => array(), 'em' => array() ) ); ?></h2>
-    </div>
-
-    <div class="ab-why__grid">
-      <div class="ab-why__photo rv">
-        <img src="<?php echo esc_url( rr_img( $a['why_photo'], 'villa-pool-terrace.webp' ) ); ?>" alt="<?php esc_attr_e( 'Villa terrace in Dubai at golden hour', 'realtor-raihan' ); ?>" loading="lazy" decoding="async">
-        <div class="ab-why__badge">
-          <b><?php echo esc_html( $a['badge_b'] ); ?></b>
-          <span><?php echo esc_html( $a['badge_s'] ); ?></span>
-        </div>
-      </div>
-
-      <div class="ab-why__list">
-        <?php foreach ( $a['features'] as $feature ) : ?>
-          <article class="ab-feat rv">
-            <span class="ab-feat__ico" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                <?php echo isset( $icons[ $feature['icon'] ] ) ? $icons[ $feature['icon'] ] : $icons['shield']; // phpcs:ignore ?>
-              </svg>
-            </span>
-            <div>
-              <h3><?php echo esc_html( $feature['title'] ); ?></h3>
-              <p><?php echo wp_kses_post( $feature['text'] ); ?></p>
-            </div>
-          </article>
-        <?php endforeach; ?>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- 4. closing CTA -->
+<!-- 3. closing CTA -->
 <section class="sec ab-close" aria-labelledby="ab-close-h">
   <div class="ab-close__bg" aria-hidden="true">
     <img src="<?php echo esc_url( get_theme_mod( 'rr_about_close_bg', RR_URI . '/assets/img/skyline-sunset-wide.webp' ) ); ?>" alt="" loading="lazy" decoding="async">
