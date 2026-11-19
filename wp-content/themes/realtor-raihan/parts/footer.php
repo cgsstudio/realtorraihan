@@ -39,18 +39,11 @@ $copyright = get_theme_mod( 'rr_footer_copyright', '' );
 
         <p class="ft__follow"><?php esc_html_e( 'Follow Us:', 'realtor-raihan' ); ?></p>
         <div class="ft__socials">
-          <a class="ft__soc" href="<?php echo esc_url( rr_whatsapp() ); ?>" target="_blank" rel="noopener" aria-label="WhatsApp">
-            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm0 1.8a8.2 8.2 0 0 1 0 16.4 8.1 8.1 0 0 1-4.2-1.1l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 0 1 12 3.8Zm-3 4c-.2 0-.5.1-.7.3-.3.3-.8.8-.8 1.9s.8 2.1 1 2.2c.1.2 1.6 2.4 3.9 3.4 1.9.8 2.3.7 2.7.6.5 0 1.2-.5 1.4-1 .2-.5.2-.9.1-1l-.5-.3-1.4-.7c-.2-.1-.4-.1-.5.1l-.6.8c-.1.2-.3.2-.5.1-.2-.1-.9-.3-1.7-1a6.3 6.3 0 0 1-1.2-1.5c-.1-.2 0-.3.1-.4l.3-.4.2-.4v-.4l-.7-1.6c-.2-.4-.4-.4-.5-.4h-.5Z"/></svg>
-          </a>
-          <a class="ft__soc" href="mailto:<?php echo esc_attr( rr_email() ); ?>" aria-label="Email">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2.5" y="4.5" width="19" height="15" rx="2.5"/><path d="m3 6.5 9 6 9-6"/></svg>
-          </a>
-          <a class="ft__soc" href="<?php echo esc_attr( rr_phone_href() ); ?>" aria-label="Call">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2Z"/></svg>
-          </a>
-          <a class="ft__soc" href="<?php echo esc_url( rr_anchor( 'contact' ) ); ?>" aria-label="<?php esc_attr_e( 'Enquiry form', 'realtor-raihan' ); ?>">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H8l-5 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2Z"/></svg>
-          </a>
+          <?php
+          if ( function_exists( 'rr_render_social_icons' ) ) {
+              rr_render_social_icons();
+          }
+          ?>
         </div>
 
         <p class="ft__copy">

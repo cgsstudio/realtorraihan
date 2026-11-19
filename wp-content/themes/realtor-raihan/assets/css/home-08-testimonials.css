@@ -109,6 +109,7 @@
   color:var(--gold);border:1px solid rgba(200,163,77,.4);
   background:rgba(200,163,77,.08);
   transition:background .5s var(--ease-out),color .5s var(--ease-out)}
+img.tcard__av{object-fit:cover;border:none!important;display:block}
 .tcard[data-pos="0"] .tcard__av{background:var(--gold);color:var(--navy);
   border-color:var(--gold)}
 .tcard__nm{font-size:.84rem;font-weight:600;color:#fff;line-height:1.3}

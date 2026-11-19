@@ -9,7 +9,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'RR_VERSION', '1.0.14' );
+define( 'RR_VERSION', '1.0.15' );
 define( 'RR_DIR', get_template_directory() );
 define( 'RR_URI', get_template_directory_uri() );
 
@@ -26,6 +26,7 @@ require_once RR_DIR . '/inc/demo-content.php';
 require_once RR_DIR . '/inc/newsletter.php';
 require_once RR_DIR . '/inc/admin-ux.php';
 require_once RR_DIR . '/inc/page-editor.php';
+require_once RR_DIR . '/inc/post-types.php';
 
 /**
  * Assets.
