@@ -162,7 +162,8 @@ function rr_img_tag( $value, $fallback, $class = '', $loading = 'lazy', $attrs =
  * @return array
  */
 function rr_lines( $text ) {
-	$lines = preg_split( '/\r\n|\r|\n/', (string) $text );
+	$text  = str_replace( '\n', "\n", (string) $text );
+	$lines = preg_split( '/\r\n|\r|\n/', $text );
 	return array_values( array_filter( array_map( 'trim', $lines ), 'strlen' ) );
 }
 

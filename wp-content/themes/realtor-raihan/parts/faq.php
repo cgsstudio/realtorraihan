@@ -22,7 +22,7 @@ $rows = rr_h_rows( 'faq' );
 
       <p class="fq__lede rv"><?php echo wp_kses_post( rr_h( 'fq_lede' ) ); ?></p>
 
-      <a class="fq__cta rv" href="<?php echo esc_url( rr_anchor( 'contact' ) ); ?>">
+      <a class="pill pill--gold fq__cta rv" href="<?php echo esc_url( rr_anchor( 'contact' ) ); ?>">
         <?php echo esc_html( rr_h( 'fq_cta' ) ); ?>
         <?php echo rr_arrow(); // phpcs:ignore ?>
       </a>

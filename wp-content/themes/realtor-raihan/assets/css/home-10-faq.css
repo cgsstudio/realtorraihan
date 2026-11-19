@@ -49,22 +49,7 @@
 .fq__lede{margin:clamp(18px,2.2vw,26px) 0 0;max-width:34ch;
   font-size:clamp(.9rem,1vw,.98rem);line-height:1.66;color:rgba(255,255,255,.66)}
 
-.fq__cta{display:inline-flex;align-items:center;gap:10px;margin-top:clamp(22px,2.8vw,32px);
-  padding:14px 22px;border-radius:var(--r-chip);
-  background:rgba(255,255,255,.10);border:1px solid rgba(255,255,255,.26);
-  color:#fff;text-decoration:none;font-size:.83rem;font-weight:500;
-  -webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);
-  transition:background .4s var(--ease-out),border-color .4s var(--ease-out),
-             transform .4s var(--ease-out)}
-.fq__cta svg{width:13px;height:13px;transition:transform .4s var(--ease-out)}
-.fq__cta{position:relative;overflow:visible;isolation:isolate}
-.fq__cta::after{content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;border:1.5px solid currentColor;opacity:0;transform:scale(.90);transition:opacity .45s var(--ease-out),transform .55s var(--ease-out)}
-.fq__cta:hover{background:var(--gold);border-color:var(--gold);color:var(--navy);
-  transform:translateY(-3px);box-shadow:0 16px 32px -14px rgba(200,163,77,.6)}
-
-.fq__cta:hover::after{opacity:.62;transform:scale(1.075)}
-.fq__cta:hover svg{transform:translate(3px,-3px) scale(1.08)}
-.fq__cta:active{transform:translateY(0) scale(.975)}
+.fq__cta{margin-top:clamp(22px,2.8vw,32px);width:fit-content}
 
 /* ---------------- right: card stack ---------------- */
 .fq__list{display:flex;flex-direction:column;gap:clamp(10px,1.1vw,14px)}

@@ -25,7 +25,7 @@ $shots = array(
 
     <div class="wc__head">
       <?php rr_head_lines( rr_h( 'wc_title' ), 'wc-title' ); ?>
-      <a class="wc__cta rv" href="<?php echo esc_url( rr_anchor( 'contact' ) ); ?>">
+      <a class="pill pill--gold wc__cta rv" href="<?php echo esc_url( rr_anchor( 'contact' ) ); ?>">
         <?php echo esc_html( rr_h( 'wc_cta' ) ); ?>
         <?php echo rr_arrow(); // phpcs:ignore ?>
       </a>

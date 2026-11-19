@@ -56,14 +56,14 @@ function rr_home_defaults() {
 
 		/* ------------- why invest ------------- */
 		'wi_tag'   => 'Why Invest',
-		'wi_title' => 'Why Are Smart Investors\nLooking at <em>Dubai</em> for Their\nNext Property <em>Investment?</em>',
+		'wi_title' => "Why Are Smart Investors\nLooking at <em>Dubai</em> for Their\nNext Property <em>Investment?</em>",
 		'wi_aside' => 'People from all over the world invest in Dubai property for practical reasons. Here are the ones I explain to my clients most often.',
 		'wi_num'   => '13',
 		'wi_num_tx' => 'reasons clients ask about, in plain English',
 
 		/* ------------- services ------------- */
 		'sv_tag'   => 'What I Offer',
-		'sv_title' => 'Property Consulting\nServices in <em>Dubai</em>',
+		'sv_title' => "Property Consulting\nServices in <em>Dubai</em>",
 		'sv_aside' => "Whether you want to buy, sell, rent, or invest in commercial real estate, I offer property consulting services in Dubai built around your situation. Here's how I can help.",
 
 		/* ------------- testimonials ------------- */
@@ -73,7 +73,7 @@ function rr_home_defaults() {
 
 		/* ------------- why choose me ------------- */
 		'wc_meta'  => 'Why Choose Me',
-		'wc_title' => 'Why Choose Me as Your\nReal Estate Agent <em>in Dubai?</em>',
+		'wc_title' => "Why Choose Me as Your\nReal Estate Agent <em>in Dubai?</em>",
 		'wc_cta'   => 'Contact Me',
 
 		/* ------------- faq ------------- */

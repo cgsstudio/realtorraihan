@@ -30,25 +30,7 @@
   margin:0;max-width:19ch}
 .wc h2 em{font-style:normal;color:var(--gold)}
 
-.wc__cta{display:inline-flex;align-items:center;gap:10px;flex:none;
-  /* grid items stretch by default — without this the pill goes full width the
-     moment the head collapses to one column on tablet */
-  justify-self:start;width:fit-content;
-  padding:14px 22px;border-radius:var(--r-chip);
-  background:var(--gold);color:var(--navy);
-  font-size:.82rem;font-weight:600;letter-spacing:.01em;text-decoration:none;
-  transition:background .35s var(--ease-out),transform .35s var(--ease-out),
-             box-shadow .35s var(--ease-out)}
-.wc__cta svg{width:14px;height:14px;
-  transition:transform .4s var(--ease-out)}
-.wc__cta{position:relative;overflow:visible;isolation:isolate}
-.wc__cta::after{content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;border:1.5px solid currentColor;opacity:0;transform:scale(.90);transition:opacity .45s var(--ease-out),transform .55s var(--ease-out)}
-.wc__cta:hover{background:var(--gold-lt);transform:translateY(-3px);
-  box-shadow:0 16px 32px -14px rgba(200,163,77,.75)}
-
-.wc__cta:hover::after{opacity:.62;transform:scale(1.075)}
-.wc__cta:hover svg{transform:translate(3px,-3px) scale(1.08)}
-.wc__cta:active{transform:translateY(0) scale(.975)}
+.wc__cta{justify-self:start;width:fit-content;flex:none}
 
 /* ---------------- body ---------------- */
 .wc__grid{display:grid;grid-template-columns:minmax(0,0.82fr) minmax(0,1.18fr);

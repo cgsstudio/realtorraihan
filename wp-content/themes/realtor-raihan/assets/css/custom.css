@@ -136,7 +136,9 @@
    BUTTON STYLES (CLEAN HOVER, NORMAL SHADOW, NO SHINE/OUTER RING)
    ============================================================ */
 .pill,
-.ct__submit {
+.ct__submit,
+.wc__cta,
+.fq__cta {
   position: relative !important;
   display: inline-flex !important;
   align-items: center !important;
@@ -158,14 +160,18 @@
 
 /* Remove floating outer ring border completely */
 .pill::after,
-.ct__submit::after {
+.ct__submit::after,
+.wc__cta::after,
+.fq__cta::after {
   display: none !important;
   content: none !important;
 }
 
 /* Arrow smooth transition */
 .pill svg,
-.ct__submit svg {
+.ct__submit svg,
+.wc__cta svg,
+.fq__cta svg {
   flex: none !important;
   transition: transform .28s var(--ease-out) !important;
 }
@@ -173,18 +179,26 @@
 .pill:hover svg,
 .pill:focus-visible svg,
 .ct__submit:hover svg,
-.ct__submit:focus-visible svg {
+.ct__submit:focus-visible svg,
+.wc__cta:hover svg,
+.wc__cta:focus-visible svg,
+.fq__cta:hover svg,
+.fq__cta:focus-visible svg {
   transform: translate(3px, -3px) scale(1.06) !important;
 }
 
 .pill:active,
-.ct__submit:active {
+.ct__submit:active,
+.wc__cta:active,
+.fq__cta:active {
   transform: translateY(0) scale(.98) !important;
 }
 
-/* 1. Gold Button (Header CTA, About CTA, Contact Submit) */
+/* 1. Gold Button (Header CTA, About CTA, Contact Submit, Why Choose CTA, FAQ CTA) */
 .pill--gold,
-.ct__submit {
+.ct__submit,
+.wc__cta,
+.fq__cta {
   background: var(--gold) !important;
   color: var(--gold-ink) !important;
   border: 1.5px solid var(--gold) !important;
@@ -193,7 +207,11 @@
 .pill--gold:hover,
 .pill--gold:focus-visible,
 .ct__submit:hover,
-.ct__submit:focus-visible {
+.ct__submit:focus-visible,
+.wc__cta:hover,
+.wc__cta:focus-visible,
+.fq__cta:hover,
+.fq__cta:focus-visible {
   background: var(--gold) !important;
   color: var(--gold-ink) !important;
   border: 1.5px solid var(--gold) !important;
@@ -203,7 +221,11 @@
 .pill--gold:hover svg,
 .pill--gold:focus-visible svg,
 .ct__submit:hover svg,
-.ct__submit:focus-visible svg {
+.ct__submit:focus-visible svg,
+.wc__cta:hover svg,
+.wc__cta:focus-visible svg,
+.fq__cta:hover svg,
+.fq__cta:focus-visible svg {
   color: var(--gold-ink) !important;
   stroke: var(--gold-ink) !important;
 }
