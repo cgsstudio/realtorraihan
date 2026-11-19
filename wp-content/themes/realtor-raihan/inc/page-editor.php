@@ -33,7 +33,14 @@ if ( ! defined( 'ABSPATH' ) ) {
  */
 function rr_managed_slug( $post_id ) {
 	$slug = get_post_field( 'post_name', $post_id );
-	return in_array( $slug, array( 'home', 'about', 'contact' ), true ) ? $slug : '';
+	if ( in_array( $slug, array( 'home', 'about', 'contact', 'blog' ), true ) ) {
+		return $slug;
+	}
+	$page_for_posts = (int) get_option( 'page_for_posts' );
+	if ( $page_for_posts && (int) $post_id === $page_for_posts ) {
+		return 'blog';
+	}
+	return '';
 }
 
 /**
@@ -57,6 +64,11 @@ function rr_page_owner() {
 			'action' => 'rr_contact_save',
 			'label'  => __( 'Contact page', 'realtor-raihan' ),
 			'url'    => 'admin.php?page=rr-contact',
+		),
+		'blog'    => array(
+			'action' => 'rr_blog_save',
+			'label'  => __( 'Blog page', 'realtor-raihan' ),
+			'url'    => 'admin.php?page=rr-blog',
 		),
 	);
 }
@@ -144,6 +156,17 @@ function rr_field_label( $key ) {
 		'fine_text'     => 'Privacy fine print under button',
 		'done_h'        => 'Confirmation heading (after submit)',
 		'done_p'        => 'Confirmation message (after submit)',
+		'hero_img'      => 'Hero background photo',
+		'list_tag'      => 'Articles section: small label',
+		'list_title'    => 'Articles section: heading',
+		'filter_all'    => 'Filter "All" button label',
+		'read_more'     => 'Article card: button text',
+		'empty_msg'     => 'No articles message',
+		'news_title'    => 'Newsletter: heading',
+		'news_text'     => 'Newsletter: description',
+		'news_placeholder' => 'Newsletter: email placeholder',
+		'news_btn'      => 'Newsletter: button text',
+		'news_note'     => 'Newsletter: disclaimer note',
 	);
 	if ( isset( $map[ $key ] ) ) {
 		return $map[ $key ];
@@ -239,6 +262,19 @@ function rr_page_fields( $slug ) {
 		return $fields;
 	}
 
+	if ( 'blog' === $slug ) {
+		$data     = rr_blog();
+		$defaults = rr_blog_defaults();
+		foreach ( $defaults as $key => $default ) {
+			$fields[ $key ] = array(
+				'value' => isset( $data[ $key ] ) ? (string) $data[ $key ] : (string) $default,
+				'type'  => in_array( $key, array( 'title', 'lede', 'list_title', 'news_title', 'news_text' ), true ) ? 'area' : 'text',
+				'help'  => '',
+			);
+		}
+		return $fields;
+	}
+
 	$data     = rr_about();
 	$defaults = rr_about_defaults();
 	foreach ( $defaults as $key => $default ) {
@@ -266,6 +302,13 @@ function rr_page_groups( $slug ) {
 			'eyebrow|title|lede' => __( 'Heading & Introduction', 'realtor-raihan' ),
 			'phone|call_lbl|whatsapp|wa_lbl|wa_sub|email|email_lbl|area|area_lbl' => __( 'Direct Channels & Office Details', 'realtor-raihan' ),
 			'form_h|form_p|btn_text|fine_text|done_h|done_p' => __( 'Enquiry Form & Confirmation', 'realtor-raihan' ),
+		);
+	}
+	if ( 'blog' === $slug ) {
+		return array(
+			'eyebrow|title|lede|hero_img' => __( 'Hero Banner', 'realtor-raihan' ),
+			'list_tag|list_title|filter_all|read_more|empty_msg' => __( 'Articles List & Filter', 'realtor-raihan' ),
+			'news_title|news_text|news_placeholder|news_btn|news_note' => __( 'Newsletter Band', 'realtor-raihan' ),
 		);
 	}
 	if ( 'about' === $slug ) {
@@ -297,7 +340,7 @@ function rr_page_groups( $slug ) {
  * @return array key => array( heading, group, columns, help )
  */
 function rr_page_repeaters( $slug ) {
-	if ( 'contact' === $slug ) {
+	if ( in_array( $slug, array( 'contact', 'blog' ), true ) ) {
 		return array();
 	}
 	if ( 'about' === $slug ) {
@@ -339,7 +382,7 @@ function rr_page_repeaters( $slug ) {
  * @return array group => rows.
  */
 function rr_page_repeater_rows( $slug ) {
-	if ( 'contact' === $slug ) {
+	if ( in_array( $slug, array( 'contact', 'blog' ), true ) ) {
 		return array();
 	}
 	if ( 'about' === $slug ) {
@@ -674,6 +717,12 @@ function rr_page_body_text( $slug ) {
  */
 function rr_sync_page_body( $slug ) {
 	$page = get_page_by_path( $slug );
+	if ( ! $page && 'blog' === $slug ) {
+		$page_for_posts = (int) get_option( 'page_for_posts' );
+		if ( $page_for_posts ) {
+			$page = get_post( $page_for_posts );
+		}
+	}
 	if ( ! $page ) {
 		return;
 	}
@@ -768,6 +817,26 @@ function rr_managed_page_save( $post_id, $post ) {
 			if ( ! empty( $clean['whatsapp'] ) ){ set_theme_mod( 'rr_whatsapp', $clean['whatsapp'] ); }
 			if ( ! empty( $clean['email'] ) )   { set_theme_mod( 'rr_email', $clean['email'] ); }
 			if ( ! empty( $clean['area'] ) )    { set_theme_mod( 'rr_area', $clean['area'] ); }
+
+			$did_save = true;
+		} elseif ( 'blog' === $slug ) {
+			$clean = array();
+			$data  = rr_blog();
+			foreach ( $text as $key => $value ) {
+				$key           = sanitize_key( $key );
+				$clean[ $key ] = wp_kses_post( trim( (string) $value ) );
+			}
+			$merged = array_merge( $data, $clean );
+			update_option( 'rr_blog_page', $merged );
+
+			// Sync with theme mods
+			if ( ! empty( $clean['eyebrow'] ) )    { set_theme_mod( 'rr_blog_eyebrow', $clean['eyebrow'] ); }
+			if ( ! empty( $clean['title'] ) )      { set_theme_mod( 'rr_blog_title', $clean['title'] ); }
+			if ( ! empty( $clean['lede'] ) )       { set_theme_mod( 'rr_blog_lede', $clean['lede'] ); }
+			if ( ! empty( $clean['hero_img'] ) )   { set_theme_mod( 'rr_blog_hero', $clean['hero_img'] ); }
+			if ( ! empty( $clean['list_title'] ) ) { set_theme_mod( 'rr_blog_list_title', $clean['list_title'] ); }
+			if ( ! empty( $clean['news_title'] ) ) { set_theme_mod( 'rr_news_title', $clean['news_title'] ); }
+			if ( ! empty( $clean['news_text'] ) )  { set_theme_mod( 'rr_news_text', $clean['news_text'] ); }
 
 			$did_save = true;
 		} else {

@@ -9,7 +9,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'RR_VERSION', '1.0.24' );
+define( 'RR_VERSION', '1.0.25' );
 define( 'RR_DIR', get_template_directory() );
 define( 'RR_URI', get_template_directory_uri() );
 
@@ -19,6 +19,7 @@ require_once RR_DIR . '/inc/customizer.php';
 require_once RR_DIR . '/inc/home-fields.php';
 require_once RR_DIR . '/inc/about-fields.php';
 require_once RR_DIR . '/inc/contact-fields.php';
+require_once RR_DIR . '/inc/blog-fields.php';
 require_once RR_DIR . '/inc/contact.php';
 require_once RR_DIR . '/inc/nav-walker.php';
 require_once RR_DIR . '/inc/theme-setup.php';
@@ -60,7 +61,12 @@ function rr_assets() {
 		$css['rr-home-contact'] = 'home-11-contact.css';
 		$css['rr-contact']      = 'contact.css';
 	}
-	if ( is_home() || is_archive() || is_search() ) {
+	$is_blog = is_home()
+		|| is_archive()
+		|| is_search()
+		|| is_page( 'blog' )
+		|| is_page_template( 'page-templates/blog.php' );
+	if ( $is_blog ) {
 		$css['rr-blog'] = 'blog.css';
 	}
 	if ( is_singular( 'post' ) ) {
@@ -100,7 +106,7 @@ function rr_assets() {
 	if ( $is_contact ) {
 		wp_enqueue_script( 'rr-contact-js', RR_URI . '/assets/js/11-contact.js', array(), RR_VERSION, true );
 	}
-	if ( is_home() || is_archive() || is_search() ) {
+	if ( $is_blog ) {
 		wp_enqueue_script( 'rr-blog', RR_URI . '/assets/js/blog.js', array(), RR_VERSION, true );
 	}
 

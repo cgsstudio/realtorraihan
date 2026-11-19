@@ -185,6 +185,43 @@ add_action(
 );
 
 /**
+ * Automatically ensure the Blog page exists and is set as the posts page.
+ */
+add_action(
+	'init',
+	function () {
+		if ( get_option( 'rr_blog_page_provisioned' ) ) {
+			return;
+		}
+		$blog = get_page_by_path( 'blog' );
+		if ( ! $blog ) {
+			$id = wp_insert_post(
+				array(
+					'post_title'   => 'Blog',
+					'post_name'    => 'blog',
+					'post_status'  => 'publish',
+					'post_type'    => 'page',
+					'post_content' => '',
+				)
+			);
+			if ( $id && ! is_wp_error( $id ) ) {
+				update_option( 'page_for_posts', $id );
+				update_post_meta( $id, '_wp_page_template', 'page-templates/blog.php' );
+			}
+		} else {
+			if ( (int) get_option( 'page_for_posts' ) !== (int) $blog->ID ) {
+				update_option( 'page_for_posts', $blog->ID );
+			}
+			$tpl = get_post_meta( $blog->ID, '_wp_page_template', true );
+			if ( empty( $tpl ) || 'default' === $tpl ) {
+				update_post_meta( $blog->ID, '_wp_page_template', 'page-templates/blog.php' );
+			}
+		}
+		update_option( 'rr_blog_page_provisioned', 1 );
+	}
+);
+
+/**
  * The header menu: a WP menu when the client made one, the built-in one until
  * then. Anchors are printed flat because the design's bar is not a list.
  *
