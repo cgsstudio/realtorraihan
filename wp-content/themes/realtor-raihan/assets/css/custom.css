@@ -531,13 +531,12 @@
 
 .mmenu__foot {
   margin-top: auto !important;
-  padding-top: 24px !important;
-  border-top: 1px solid rgba(255, 255, 255, 0.08) !important;
+  padding-top: 26px !important;
+  border-top: 1px solid rgba(255, 255, 255, 0.12) !important;
   display: flex !important;
   flex-direction: column !important;
-  gap: 8px !important;
-  font-size: 0.85rem !important;
-  color: var(--navy-mute) !important;
+  gap: 12px !important;
+  color: rgba(255, 255, 255, 0.72) !important;
   opacity: 0 !important;
   transform: translateY(10px) !important;
   transition: opacity .4s var(--ease-out), transform .4s var(--ease-out) !important;
@@ -549,14 +548,32 @@
   transition-delay: 320ms !important;
 }
 
+.mmenu__foot span {
+  font-size: clamp(0.92rem, 2.2vw, 1.05rem) !important;
+  color: rgba(255, 255, 255, 0.7) !important;
+  line-height: 1.4 !important;
+  display: block !important;
+  margin-bottom: 2px !important;
+}
+
 .mmenu__foot a {
   font-family: var(--body) !important;
-  font-size: 0.88rem !important;
-  color: var(--gold) !important;
+  font-size: clamp(1.15rem, 3.4vw, 1.35rem) !important;
+  font-weight: 600 !important;
+  color: var(--gold, #C8A34D) !important;
   text-decoration: none !important;
   border: 0 !important;
-  padding: 0 !important;
+  padding: 2px 0 !important;
   display: inline-block !important;
+  letter-spacing: 0.01em !important;
+  line-height: 1.45 !important;
+  transition: color 0.3s ease, transform 0.3s ease !important;
+}
+
+.mmenu__foot a:hover,
+.mmenu__foot a:focus-visible {
+  color: #ffffff !important;
+  transform: translateX(3px) !important;
 }
 
 /* ============================================================
