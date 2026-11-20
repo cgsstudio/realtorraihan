@@ -3,9 +3,12 @@
    ============================================================ */
 
 /* Page body background must be deep navy */
+html.page-template-contact,
+html.page-contact,
 body.page-template-contact,
 body.page-contact,
-body:has(.ct-page-main) {
+body:has(.ct-page-main),
+body:has(.ct) {
   background: var(--navy, #0B1F3A) !important;
   color: #ffffff !important;
 }
@@ -17,9 +20,11 @@ body:has(.ct-page-main) {
   display: flex !important;
   flex-direction: column !important;
   justify-content: center !important;
+  position: relative !important;
 }
 
 /* Contact section itself on dedicated contact page */
+.ct,
 .ct-page-main .ct {
   background: var(--navy, #0B1F3A) !important;
   color: #ffffff !important;
@@ -31,7 +36,8 @@ body:has(.ct-page-main) {
 }
 
 /* Soft gold ambient lighting blooms */
-.ct-page-main .ct::before {
+.ct-page-main .ct::before,
+.ct::before {
   content: "" !important;
   position: absolute !important;
   z-index: -1 !important;
@@ -46,7 +52,8 @@ body:has(.ct-page-main) {
   display: block !important;
 }
 
-.ct-page-main .ct::after {
+.ct-page-main .ct::after,
+.ct::after {
   content: "" !important;
   position: absolute !important;
   z-index: -1 !important;
@@ -61,13 +68,59 @@ body:has(.ct-page-main) {
   display: block !important;
 }
 
+/* Typography on dark navy */
+.ct h2,
+.ct-page-main .ct h2 {
+  color: #ffffff !important;
+}
+
+.ct h2 em,
+.ct-page-main .ct h2 em {
+  color: var(--gold, #C8A34D) !important;
+}
+
+.ct__lede,
+.ct-page-main .ct .ct__lede {
+  color: rgba(255, 255, 255, .72) !important;
+}
+
+.ct__rowTx small {
+  color: rgba(255, 255, 255, .45) !important;
+}
+
+.ct__rowTx span {
+  color: #ffffff !important;
+}
+
+.ct__card {
+  background: linear-gradient(165deg, rgba(255, 255, 255, .10) 0%, rgba(255, 255, 255, .045) 42%, rgba(11, 31, 58, .30) 100%) !important;
+  border: 1px solid rgba(190, 212, 245, .20) !important;
+  -webkit-backdrop-filter: blur(22px) saturate(150%) !important;
+  backdrop-filter: blur(22px) saturate(150%) !important;
+  box-shadow: 0 40px 80px -52px rgba(0, 0, 0, .85), inset 0 1px 0 rgba(255, 255, 255, .14) !important;
+}
+
+.ct__formHead h3 {
+  color: #ffffff !important;
+}
+
+.ct__formHead p {
+  color: rgba(255, 255, 255, .62) !important;
+}
+
+.ct__fine {
+  color: rgba(255, 255, 255, .42) !important;
+}
+
 /* Ensure all reveal elements (.rv) and split lines are visible immediately */
-.ct-page-main .ct .rv {
+.ct-page-main .ct .rv,
+.ct .rv {
   opacity: 1 !important;
   transform: none !important;
 }
 
-.ct-page-main .ct .ln > span {
+.ct-page-main .ct .ln > span,
+.ct .ln > span {
   transform: none !important;
 }
 

@@ -843,9 +843,14 @@
 }
 
 /* ============================================================
-   INTRO STATS BAR (NUMBER ON TOP, 2-LINE CONTENT BELOW - CENTERED)
+   INTRO STATS BAR (NUMBER ON TOP, 2-LINE CONTENT BELOW - CENTERED ON ALL SCREENS)
    ============================================================ */
+.s2__stats {
+  text-align: center !important;
+}
+
 .s2__statsGrid {
+  display: grid !important;
   align-items: start !important;
   justify-items: center !important;
 }
@@ -855,8 +860,11 @@
   flex-direction: column !important;
   align-items: center !important;
   text-align: center !important;
+  justify-content: center !important;
   gap: clamp(10px, 1.3vw, 16px) !important;
   width: 100% !important;
+  margin-inline: auto !important;
+  padding-inline: 0 !important;
 }
 
 .stat2__num {
@@ -866,9 +874,11 @@
   min-width: 0 !important;
   text-align: center !important;
   width: 100% !important;
+  display: block !important;
 }
 
 .stat2__label {
+  display: block !important;
   padding-top: 0 !important;
   min-width: 0 !important;
   width: 100% !important;
@@ -884,6 +894,7 @@
   line-height: 1.35 !important;
   white-space: normal !important;
   text-align: center !important;
+  margin-inline: auto !important;
 }
 
 .stat2__label span {
@@ -891,9 +902,75 @@
   font-size: clamp(.76rem, .84vw, .82rem) !important;
   line-height: 1.55 !important;
   color: var(--ink-body) !important;
-  max-width: 28ch !important;
+  max-width: 32ch !important;
   margin-inline: auto !important;
   text-align: center !important;
+}
+
+@media (max-width: 768px) {
+  .s2__statsGrid {
+    grid-template-columns: 1fr !important;
+    justify-items: center !important;
+    gap: 34px !important;
+  }
+  .stat2 {
+    align-items: center !important;
+    text-align: center !important;
+    width: 100% !important;
+    margin: 0 auto !important;
+    padding: 0 !important;
+  }
+  .stat2__num {
+    font-size: clamp(2.6rem, 8vw, 3.4rem) !important;
+    text-align: center !important;
+    width: 100% !important;
+    min-width: 0 !important;
+  }
+  .stat2__label,
+  .stat2__label b,
+  .stat2__label span {
+    text-align: center !important;
+    margin-inline: auto !important;
+    width: 100% !important;
+  }
+}
+
+/* ============================================================
+   CONTACT SECTION & PAGE — DARK NAVY LUXURY STYLE FALLBACK
+   ============================================================ */
+.ct,
+.ct-page-main,
+.ct-page-main .ct,
+body.page-template-contact,
+body.page-contact {
+  background: #0B1F3A !important;
+  color: #ffffff !important;
+}
+
+.ct h2,
+.ct-page-main .ct h2 {
+  color: #ffffff !important;
+}
+
+.ct h2 em,
+.ct-page-main .ct h2 em {
+  color: var(--gold, #C8A34D) !important;
+}
+
+.ct__card {
+  background: linear-gradient(165deg, rgba(255, 255, 255, .10) 0%, rgba(255, 255, 255, .045) 42%, rgba(11, 31, 58, .30) 100%) !important;
+  border: 1px solid rgba(190, 212, 245, .20) !important;
+  -webkit-backdrop-filter: blur(22px) saturate(150%) !important;
+  backdrop-filter: blur(22px) saturate(150%) !important;
+  box-shadow: 0 40px 80px -52px rgba(0, 0, 0, .85), inset 0 1px 0 rgba(255, 255, 255, .14) !important;
+}
+
+.ct__formHead h3 {
+  color: #ffffff !important;
+}
+
+.ct__formHead p {
+  color: rgba(255, 255, 255, .62) !important;
 }
 
 /* ============================================================

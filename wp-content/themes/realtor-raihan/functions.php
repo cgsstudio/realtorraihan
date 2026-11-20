@@ -9,7 +9,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'RR_VERSION', '1.0.27' );
+define( 'RR_VERSION', '1.0.28' );
 define( 'RR_DIR', get_template_directory() );
 define( 'RR_URI', get_template_directory_uri() );
 
@@ -55,6 +55,8 @@ function rr_assets() {
 		$css['rr-about'] = 'about.css';
 	}
 	$is_contact = is_page( 'contact' )
+		|| is_page( 'contact-us' )
+		|| is_page( 'get-in-touch' )
 		|| is_page_template( 'page-templates/contact.php' )
 		|| is_page_template( 'page-contact.php' );
 	if ( $is_contact ) {
@@ -130,7 +132,7 @@ function rr_body_class( $classes ) {
 	if ( is_front_page() ) {
 		$classes[] = 'rr-home';
 	}
-	if ( is_page( 'contact' ) || is_page_template( 'page-templates/contact.php' ) || is_page_template( 'page-contact.php' ) ) {
+	if ( is_page( 'contact' ) || is_page( 'contact-us' ) || is_page( 'get-in-touch' ) || is_page_template( 'page-templates/contact.php' ) || is_page_template( 'page-contact.php' ) ) {
 		$classes[] = 'page-contact';
 		$classes[] = 'page-template-contact';
 	}

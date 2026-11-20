@@ -146,26 +146,26 @@
 .s2__stats > .sec__wrap{padding-block:clamp(48px,5vw,72px)}
 
 .s2__statsGrid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));
-  gap:clamp(24px,3.2vw,56px)}
+  gap:clamp(24px,3.2vw,56px);justify-items:center;align-items:start}
 
-.stat2{display:flex;flex-direction:column;align-items:flex-start;gap:clamp(12px,1.4vw,18px);
-  padding-inline:clamp(10px,1.2vw,16px);position:relative}
+.stat2{display:flex;flex-direction:column;align-items:center;text-align:center;gap:clamp(12px,1.4vw,18px);
+  padding-inline:clamp(10px,1.2vw,16px);position:relative;width:100%}
 .stat2:first-child{padding-left:0}
 .stat2:last-child{padding-right:0}
 /* no dividers — clear space does the separating */
 
 .stat2__num{font-family:var(--display);font-weight:400;letter-spacing:-.04em;line-height:1;
   font-size:clamp(2.8rem,4.5vw,4.4rem);color:var(--navy);flex:none;
-  font-variant-numeric:tabular-nums}
+  font-variant-numeric:tabular-nums;text-align:center;width:100%}
 .stat2__num small{font-size:.46em;color:var(--gold);letter-spacing:-.01em;
   vertical-align:.28em;margin-left:.03em}
 
-.stat2__label{display:block;min-width:0;padding-top:0;width:100%}
+.stat2__label{display:block;min-width:0;padding-top:0;width:100%;text-align:center}
 .stat2__label b{display:block;font-size:clamp(.82rem,.94vw,.9rem);font-weight:600;
   letter-spacing:-.01em;color:var(--navy);margin-bottom:8px;line-height:1.35;
-  white-space:normal}
+  white-space:normal;text-align:center;margin-inline:auto}
 .stat2__label span{display:block;font-size:clamp(.76rem,.84vw,.82rem);line-height:1.6;
-  color:var(--ink-body);max-width:28ch}
+  color:var(--ink-body);max-width:28ch;margin-inline:auto;text-align:center}
 
 /* hover: numeral warms to gold, label lifts */
 .stat2{transition:transform .45s var(--ease-out)}
@@ -209,22 +209,23 @@
 }
 @media(max-width:1040px){
   .s2__statsGrid{grid-template-columns:repeat(2,minmax(0,1fr));
-    gap:clamp(38px,4.4vw,50px) clamp(28px,3.4vw,44px)}
-  .stat2{padding-inline:clamp(14px,2.6vw,26px)}
+    gap:clamp(38px,4.4vw,50px) clamp(28px,3.4vw,44px);justify-items:center}
+  .stat2{padding-inline:clamp(14px,2.6vw,26px);align-items:center;text-align:center;width:100%}
   .stat2{padding-inline:0}
-  .stat2__label span{max-width:28ch}
-  .stat2__label b{white-space:normal}
+  .stat2__label span{max-width:28ch;margin-inline:auto;text-align:center}
+  .stat2__label b{white-space:normal;text-align:center}
 }
 @media(max-width:560px){
   .s2__inner{padding-block:30px 0}
   .s2__stats{margin-bottom:30px}
   .s2 h2 .ln > span{padding-bottom:.02em}
-  .s2__statsGrid{grid-template-columns:1fr}
+  .s2__statsGrid{grid-template-columns:1fr;justify-items:center;gap:34px}
   .s2__stats > .sec__wrap{padding-block:34px}
-  .s2__statsGrid{gap:34px}
-  .stat2{padding:0 !important}
-  .stat2__num{font-size:2.5rem;min-width:2.9ch}
-  .stat2__label span{max-width:34ch}
+  .stat2{padding:0 !important;align-items:center !important;text-align:center !important;width:100% !important;margin:0 auto !important}
+  .stat2__num{font-size:clamp(2.5rem,7vw,3.2rem) !important;min-width:0 !important;text-align:center !important;width:100% !important}
+  .stat2__label{text-align:center !important;width:100% !important}
+  .stat2__label b{text-align:center !important;width:100% !important;margin-inline:auto !important}
+  .stat2__label span{max-width:34ch !important;margin-inline:auto !important;text-align:center !important}
   .s2__badge{padding:12px 16px;gap:11px}
   .s2__badge strong{font-size:1.4rem}
   .s2__badge span{font-size:.67rem}
