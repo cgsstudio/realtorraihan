@@ -7,11 +7,12 @@
 ?>
 <header class="hero__bar rr-bar">
   <div class="hero__barInner">
-    <?php $site_logo = rr_custom_logo_url(); ?>
-    <a class="brand<?php echo $site_logo ? ' brand--has-logo' : ''; ?>" href="<?php echo esc_url( home_url( '/' ) ); ?>" aria-label="<?php echo esc_attr( get_bloginfo( 'name' ) ); ?>">
-      <?php if ( $site_logo ) : ?>
-        <img class="brand__logo-img" src="<?php echo esc_url( $site_logo ); ?>" alt="<?php echo esc_attr( get_bloginfo( 'name' ) ); ?>">
-      <?php else : ?>
+    <?php if ( function_exists( 'has_custom_logo' ) && has_custom_logo() ) : ?>
+      <div class="brand brand--custom-logo">
+        <?php the_custom_logo(); ?>
+      </div>
+    <?php else : ?>
+      <a class="brand" href="<?php echo esc_url( home_url( '/' ) ); ?>" aria-label="<?php echo esc_attr( get_bloginfo( 'name' ) ); ?>">
         <img class="brand__mark" src="<?php echo esc_url( rr_logo_mark() ); ?>" width="34" height="36" alt="">
         <span class="brand__words">
           <span class="brand__name">
@@ -27,8 +28,8 @@
           </span>
           <span class="brand__sub"><?php echo esc_html( rr_brand_sub() ); ?></span>
         </span>
-      <?php endif; ?>
-    </a>
+      </a>
+    <?php endif; ?>
 
     <nav class="nav" aria-label="<?php esc_attr_e( 'Primary', 'realtor-raihan' ); ?>">
       <?php rr_primary_menu(); ?>

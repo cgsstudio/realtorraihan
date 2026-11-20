@@ -983,28 +983,64 @@ body.page-contact {
 /* ============================================================
    WORDPRESS CUSTOM LOGO (HEADER & FOOTER)
    ============================================================ */
+.brand--custom-logo,
+.brand--custom-logo .custom-logo-link {
+  display: inline-flex !important;
+  align-items: center !important;
+  text-decoration: none !important;
+  line-height: 1 !important;
+}
+
+.brand--custom-logo .custom-logo,
+.brand .custom-logo,
 .brand__logo-img {
   max-height: 44px !important;
   width: auto !important;
-  max-width: 220px !important;
+  max-width: 240px !important;
+  height: auto !important;
   object-fit: contain !important;
   display: block !important;
+  background: transparent !important;
 }
 
 @media (max-width: 768px) {
+  .brand--custom-logo .custom-logo,
+  .brand .custom-logo,
   .brand__logo-img {
     max-height: 36px !important;
-    max-width: 170px !important;
+    max-width: 180px !important;
   }
 }
 
+.ft__brand--custom-logo,
+.ft__brand--custom-logo .custom-logo-link {
+  display: inline-flex !important;
+  align-items: center !important;
+  text-decoration: none !important;
+  line-height: 1 !important;
+  margin-bottom: 14px !important;
+}
+
+.ft__brand--custom-logo .custom-logo,
+.ft__brand .custom-logo,
 .ft__logo-img {
   max-height: 48px !important;
   width: auto !important;
-  max-width: 240px !important;
+  max-width: 250px !important;
+  height: auto !important;
   object-fit: contain !important;
   display: block !important;
+  background: transparent !important;
   margin-bottom: 14px !important;
+}
+
+@media (max-width: 768px) {
+  .ft__brand--custom-logo .custom-logo,
+  .ft__brand .custom-logo,
+  .ft__logo-img {
+    max-height: 40px !important;
+    max-width: 200px !important;
+  }
 }
 
 /* ============================================================

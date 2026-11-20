@@ -31,16 +31,17 @@ $copyright = get_theme_mod( 'rr_footer_copyright', '' );
 
       <!-- brand column -->
       <div class="rv">
-        <?php $site_logo = rr_custom_logo_url(); ?>
-        <a class="ft__brand<?php echo $site_logo ? ' ft__brand--has-logo' : ''; ?>" href="<?php echo esc_url( home_url( '/' ) ); ?>" aria-label="<?php echo esc_attr( get_bloginfo( 'name' ) ); ?>">
-          <?php if ( $site_logo ) : ?>
-            <img class="ft__logo-img" src="<?php echo esc_url( $site_logo ); ?>" alt="<?php echo esc_attr( get_bloginfo( 'name' ) ); ?>" loading="lazy" decoding="async">
-          <?php else : ?>
+        <?php if ( function_exists( 'has_custom_logo' ) && has_custom_logo() ) : ?>
+          <div class="ft__brand ft__brand--custom-logo">
+            <?php the_custom_logo(); ?>
+          </div>
+        <?php else : ?>
+          <a class="ft__brand" href="<?php echo esc_url( home_url( '/' ) ); ?>" aria-label="<?php echo esc_attr( rr_site_name() ); ?>">
             <img class="ft__brandMark" src="<?php echo esc_url( rr_logo_mark() ); ?>" width="38" height="40" alt="<?php echo esc_attr( rr_site_name() ); ?>" loading="lazy" decoding="async">
             <span class="ft__brandSep" aria-hidden="true"></span>
             <span class="ft__brandName" id="ft-title"><?php echo esc_html( rr_site_name() ); ?></span>
-          <?php endif; ?>
-        </a>
+          </a>
+        <?php endif; ?>
 
         <p class="ft__follow"><?php esc_html_e( 'Follow Us:', 'realtor-raihan' ); ?></p>
         <div class="ft__socials">

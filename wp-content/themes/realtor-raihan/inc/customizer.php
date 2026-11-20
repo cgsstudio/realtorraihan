@@ -26,8 +26,9 @@ add_action(
 		$wp_customize->add_section(
 			'rr_brand_section',
 			array(
-				'title' => __( '1. Brand and logo', 'realtor-raihan' ),
-				'panel' => 'rr_brand',
+				'title'       => __( '1. Brand details', 'realtor-raihan' ),
+				'panel'       => 'rr_brand',
+				'description' => __( 'Site Logo is managed under the default "Site Identity" section.', 'realtor-raihan' ),
 			)
 		);
 
@@ -38,21 +39,6 @@ add_action(
 		foreach ( $fields as $key => $f ) {
 			$wp_customize->add_setting( $key, array( 'default' => $f[1], 'sanitize_callback' => 'sanitize_text_field', 'transport' => 'refresh' ) );
 			$wp_customize->add_control( $key, array( 'label' => $f[0], 'section' => 'rr_brand_section', 'type' => $f[2] ) );
-		}
-
-		foreach ( array( 'rr_logo_mark' => 'Header logo mark (small emblem)', 'rr_logo_lockup' => 'Footer logo lockup' ) as $key => $label ) {
-			$wp_customize->add_setting( $key, array( 'default' => '', 'sanitize_callback' => 'esc_url_raw' ) );
-			$wp_customize->add_control(
-				new WP_Customize_Image_Control(
-					$wp_customize,
-					$key,
-					array(
-						'label'       => $label,
-						'section'     => 'rr_brand_section',
-						'description' => __( 'Leave empty to use the logo shipped with the theme.', 'realtor-raihan' ),
-					)
-				)
-			);
 		}
 
 		/* ---------------- contact ---------------- */

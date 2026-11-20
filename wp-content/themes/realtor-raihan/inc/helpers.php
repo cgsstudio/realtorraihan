@@ -49,10 +49,11 @@ function rr_brand_sub() {
 	return rr_mod( 'rr_brand_sub', 'Business Bay, Dubai' );
 }
 function rr_logo_mark() {
-	return rr_mod( 'rr_logo_mark', RR_URI . '/assets/img/logo-emblem.png' );
+	return RR_URI . '/assets/img/logo-emblem.png';
 }
 function rr_logo_lockup() {
-	return rr_mod( 'rr_logo_lockup', RR_URI . '/assets/img/logo-lockup.png' );
+	$custom = rr_custom_logo_url();
+	return $custom ? $custom : RR_URI . '/assets/img/logo-lockup.png';
 }
 
 /**
