@@ -134,3 +134,102 @@ function rr_enquiries_screen() {
 	}
 	echo '</tbody></table></div>';
 }
+
+/**
+ * Render Contact Form 7 form if available.
+ *
+ * @return string Form HTML or empty string.
+ */
+function rr_render_cf7_form() {
+	if ( ! function_exists( 'wpcf7' ) && ! defined( 'WPCF7_VERSION' ) ) {
+		return '';
+	}
+
+	$c = function_exists( 'rr_contact' ) ? rr_contact() : array();
+	$shortcode = ! empty( $c['cf7_shortcode'] ) ? trim( $c['cf7_shortcode'] ) : get_option( 'rr_cf7_shortcode', '' );
+
+	if ( ! empty( $shortcode ) ) {
+		return do_shortcode( $shortcode );
+	}
+
+	$forms = get_posts(
+		array(
+			'post_type'      => 'wpcf7_contact_form',
+			'posts_per_page' => 1,
+			'post_status'    => 'publish',
+		)
+	);
+
+	if ( ! empty( $forms ) ) {
+		return do_shortcode( sprintf( '[contact-form-7 id="%1$d" title="%2$s"]', (int) $forms[0]->ID, esc_attr( $forms[0]->post_title ) ) );
+	}
+
+	return '';
+}
+
+/**
+ * Auto-provision default Contact Form 7 form if none exists.
+ */
+add_action(
+	'init',
+	function () {
+		if ( ! function_exists( 'wpcf7' ) && ! defined( 'WPCF7_VERSION' ) ) {
+			return;
+		}
+		if ( get_option( 'rr_cf7_form_provisioned' ) ) {
+			return;
+		}
+		$existing = get_posts(
+			array(
+				'post_type'      => 'wpcf7_contact_form',
+				'posts_per_page' => 1,
+				'post_status'    => 'publish',
+			)
+		);
+		if ( ! empty( $existing ) ) {
+			update_option( 'rr_cf7_form_provisioned', $existing[0]->ID );
+			return;
+		}
+
+		$form_content = '<div class="fld">
+<label>First Name</label>
+[text* firstName placeholder "Your first name"]
+</div>
+
+<div class="fld">
+<label>Email</label>
+[email* email placeholder "you@example.com"]
+</div>
+
+<div class="fld fld--wide">
+<label>Phone (optional)</label>
+[tel phone placeholder "+971 50 000 0000"]
+</div>
+
+<div class="fld fld--wide">
+<label>Inquiry Reason</label>
+[select* reason "Select a reason" "Buying" "Selling" "Renting" "Investing" "Other"]
+</div>
+
+<div class="fld fld--wide">
+<label>Message</label>
+[textarea* message placeholder "Tell me what you\'re looking for, area, budget, timeline…"]
+</div>
+
+[submit class:ct__submit "Send Enquiry"]';
+
+		$form_id = wp_insert_post(
+			array(
+				'post_title'   => 'Realtor Raihan Contact Form',
+				'post_type'    => 'wpcf7_contact_form',
+				'post_status'  => 'publish',
+				'post_content' => $form_content,
+			)
+		);
+		if ( $form_id && ! is_wp_error( $form_id ) ) {
+			update_post_meta( $form_id, '_form', $form_content );
+			update_option( 'rr_cf7_form_provisioned', $form_id );
+		}
+	},
+	20
+);

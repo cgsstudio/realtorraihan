@@ -7,22 +7,27 @@
 ?>
 <header class="hero__bar rr-bar">
   <div class="hero__barInner">
-    <a class="brand" href="<?php echo esc_url( home_url( '/' ) ); ?>" aria-label="<?php echo esc_attr( rr_site_name() . ' home' ); ?>">
-      <img class="brand__mark" src="<?php echo esc_url( rr_logo_mark() ); ?>" width="34" height="36" alt="">
-      <span class="brand__words">
-        <span class="brand__name">
-          <?php
-          $brand = rr_site_name();
-          $parts = preg_split( '/\s+/', $brand, 2 );
-          if ( count( $parts ) > 1 ) {
-              echo esc_html( $parts[0] ) . ' <em>' . esc_html( $parts[1] ) . '</em>';
-          } else {
-              echo esc_html( $brand );
-          }
-          ?>
+    <?php $site_logo = rr_custom_logo_url(); ?>
+    <a class="brand<?php echo $site_logo ? ' brand--has-logo' : ''; ?>" href="<?php echo esc_url( home_url( '/' ) ); ?>" aria-label="<?php echo esc_attr( get_bloginfo( 'name' ) ); ?>">
+      <?php if ( $site_logo ) : ?>
+        <img class="brand__logo-img" src="<?php echo esc_url( $site_logo ); ?>" alt="<?php echo esc_attr( get_bloginfo( 'name' ) ); ?>">
+      <?php else : ?>
+        <img class="brand__mark" src="<?php echo esc_url( rr_logo_mark() ); ?>" width="34" height="36" alt="">
+        <span class="brand__words">
+          <span class="brand__name">
+            <?php
+            $brand = rr_site_name();
+            $parts = preg_split( '/\s+/', $brand, 2 );
+            if ( count( $parts ) > 1 ) {
+                echo esc_html( $parts[0] ) . ' <em>' . esc_html( $parts[1] ) . '</em>';
+            } else {
+                echo esc_html( $brand );
+            }
+            ?>
+          </span>
+          <span class="brand__sub"><?php echo esc_html( rr_brand_sub() ); ?></span>
         </span>
-        <span class="brand__sub"><?php echo esc_html( rr_brand_sub() ); ?></span>
-      </span>
+      <?php endif; ?>
     </a>
 
     <nav class="nav" aria-label="<?php esc_attr_e( 'Primary', 'realtor-raihan' ); ?>">
@@ -57,14 +62,7 @@
   </button>
   <?php
   // The mobile menu mirrors the header menu with staggered entrance timing.
-  if ( has_nav_menu( 'primary' ) ) {
-      rr_primary_menu( 0 );
-  } else {
-      printf( '<a href="%s" style="--i:0"%s>Home</a>', esc_url( home_url( '/' ) ), is_front_page() ? ' aria-current="page"' : '' ); // phpcs:ignore
-      printf( '<a href="%s" style="--i:1"%s>About</a>', esc_url( rr_link( 'about' ) ), is_page_template( 'page-templates/about.php' ) ? ' aria-current="page"' : '' ); // phpcs:ignore
-      printf( '<a href="%s" style="--i:2"%s>Blog</a>', esc_url( rr_blog_url() ), ( is_home() || is_singular( 'post' ) ) ? ' aria-current="page"' : '' ); // phpcs:ignore
-      printf( '<a href="%s" style="--i:3"%s>Contact</a>', esc_url( rr_contact_url() ), is_page_template( 'page-templates/contact.php' ) ? ' aria-current="page"' : '' ); // phpcs:ignore
-  }
+  rr_primary_menu( 0 );
   ?>
   <div class="mmenu__ctaWrap">
     <a class="pill pill--gold" href="<?php echo esc_url( $cta ? $cta : rr_anchor( 'contact' ) ); ?>">

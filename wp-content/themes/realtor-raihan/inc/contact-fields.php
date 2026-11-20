@@ -29,12 +29,13 @@ function rr_contact_defaults() {
 		'email_lbl' => 'Email',
 		'area'      => 'Business Bay, Dubai, UAE',
 		'area_lbl'  => 'Based in',
-		'form_h'    => 'Send an enquiry',
-		'form_p'    => "Fill this in and I'll reply personally, usually the same day.",
-		'btn_text'  => 'Send Enquiry',
-		'fine_text' => 'Your details stay between us, I never share them without permission.',
-		'done_h'    => 'Thank you, your enquiry is on its way',
-		'done_p'    => 'I will reply personally, usually the same day. If you would rather talk now, call or message me on WhatsApp.',
+		'form_h'        => 'Send an enquiry',
+		'form_p'        => "Fill this in and I'll reply personally, usually the same day.",
+		'btn_text'      => 'Send Enquiry',
+		'fine_text'     => 'Your details stay between us, I never share them without permission.',
+		'done_h'        => 'Thank you, your enquiry is on its way',
+		'done_p'        => 'I will reply personally, usually the same day. If you would rather talk now, call or message me on WhatsApp.',
+		'cf7_shortcode' => '',
 	);
 }
 
@@ -186,8 +187,9 @@ function rr_contact_admin_screen() {
 					'form_p'    => 'Form subtitle / instruction',
 					'btn_text'  => 'Submit button text',
 					'fine_text' => 'Privacy statement / Fine print below button',
-					'done_h'    => 'Success heading (after form submit)',
-					'done_p'    => 'Success message (after form submit)',
+					'done_h'        => 'Success heading (after form submit)',
+					'done_p'        => 'Success message (after form submit)',
+					'cf7_shortcode' => 'Contact Form 7 shortcode (optional, e.g. [contact-form-7 id="..."])',
 				);
 				foreach ( $fields_form as $k => $label ) {
 					echo '<tr><th scope="row"><label>' . esc_html( $label ) . '</label></th><td>';

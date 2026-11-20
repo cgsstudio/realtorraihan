@@ -156,6 +156,7 @@ function rr_field_label( $key ) {
 		'fine_text'     => 'Privacy fine print under button',
 		'done_h'        => 'Confirmation heading (after submit)',
 		'done_p'        => 'Confirmation message (after submit)',
+		'cf7_shortcode' => 'Contact Form 7 shortcode',
 		'hero_img'      => 'Hero background photo',
 		'list_tag'      => 'Articles section: small label',
 		'list_title'    => 'Articles section: heading',
@@ -301,7 +302,7 @@ function rr_page_groups( $slug ) {
 		return array(
 			'eyebrow|title|lede' => __( 'Heading & Introduction', 'realtor-raihan' ),
 			'phone|call_lbl|whatsapp|wa_lbl|wa_sub|email|email_lbl|area|area_lbl' => __( 'Direct Channels & Office Details', 'realtor-raihan' ),
-			'form_h|form_p|btn_text|fine_text|done_h|done_p' => __( 'Enquiry Form & Confirmation', 'realtor-raihan' ),
+			'form_h|form_p|btn_text|fine_text|done_h|done_p|cf7_shortcode' => __( 'Enquiry Form & Confirmation', 'realtor-raihan' ),
 		);
 	}
 	if ( 'blog' === $slug ) {

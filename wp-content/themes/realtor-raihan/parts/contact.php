@@ -79,6 +79,15 @@ $wa_clean    = preg_replace( '/[^0-9]/', '', $c['whatsapp'] );
         <p><?php echo esc_html( $c['form_p'] ); ?></p>
       </div>
 
+      <?php
+      $cf7_html = function_exists( 'rr_render_cf7_form' ) ? rr_render_cf7_form() : '';
+      if ( ! empty( $cf7_html ) ) :
+          echo '<div class="ct__cf7-wrap">' . $cf7_html . '</div>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+          if ( ! empty( $c['fine_text'] ) ) :
+              echo '<p class="ct__fine">' . esc_html( $c['fine_text'] ) . '</p>';
+          endif;
+      else :
+      ?>
       <form class="ct__form" id="ctForm"<?php echo $sent ? ' style="display:none"' : ''; ?> action="<?php echo esc_url( admin_url( 'admin-post.php' ) ); ?>" method="post" novalidate>
         <input type="hidden" name="action" value="rr_enquiry">
         <?php wp_nonce_field( 'rr_enquiry', 'rr_enquiry_nonce' ); ?>
@@ -147,6 +156,7 @@ $wa_clean    = preg_replace( '/[^0-9]/', '', $c['whatsapp'] );
 
         <button class="ct__again" type="button" id="ctAgain"><?php esc_html_e( 'Send another enquiry', 'realtor-raihan' ); ?></button>
       </div>
+      <?php endif; ?>
     </div>
 
   </div>

@@ -31,10 +31,15 @@ $copyright = get_theme_mod( 'rr_footer_copyright', '' );
 
       <!-- brand column -->
       <div class="rv">
-        <a class="ft__brand" href="<?php echo esc_url( home_url( '/' ) ); ?>" aria-label="<?php echo esc_attr( rr_site_name() ); ?>">
-          <img class="ft__brandMark" src="<?php echo esc_url( rr_logo_mark() ); ?>" width="38" height="40" alt="<?php echo esc_attr( rr_site_name() ); ?>" loading="lazy" decoding="async">
-          <span class="ft__brandSep" aria-hidden="true"></span>
-          <span class="ft__brandName" id="ft-title"><?php echo esc_html( rr_site_name() ); ?></span>
+        <?php $site_logo = rr_custom_logo_url(); ?>
+        <a class="ft__brand<?php echo $site_logo ? ' ft__brand--has-logo' : ''; ?>" href="<?php echo esc_url( home_url( '/' ) ); ?>" aria-label="<?php echo esc_attr( get_bloginfo( 'name' ) ); ?>">
+          <?php if ( $site_logo ) : ?>
+            <img class="ft__logo-img" src="<?php echo esc_url( $site_logo ); ?>" alt="<?php echo esc_attr( get_bloginfo( 'name' ) ); ?>" loading="lazy" decoding="async">
+          <?php else : ?>
+            <img class="ft__brandMark" src="<?php echo esc_url( rr_logo_mark() ); ?>" width="38" height="40" alt="<?php echo esc_attr( rr_site_name() ); ?>" loading="lazy" decoding="async">
+            <span class="ft__brandSep" aria-hidden="true"></span>
+            <span class="ft__brandName" id="ft-title"><?php echo esc_html( rr_site_name() ); ?></span>
+          <?php endif; ?>
         </a>
 
         <p class="ft__follow"><?php esc_html_e( 'Follow Us:', 'realtor-raihan' ); ?></p>
@@ -68,36 +73,61 @@ $copyright = get_theme_mod( 'rr_footer_copyright', '' );
         <?php
         $columns = array(
           'Quick Links' => array(
-            array( 'Home', home_url( '/' ) ),
-            array( 'About Me', rr_link( 'about' ) ),
-            array( 'Blog', rr_blog_url() ),
-            array( 'Properties', rr_anchor( 'properties' ) ),
-            array( 'Contact', rr_anchor( 'contact' ) ),
+            'location' => 'footer',
+            'items'    => array(
+              array( 'Home', home_url( '/' ) ),
+              array( 'About Me', rr_link( 'about' ) ),
+              array( 'Blog', rr_blog_url() ),
+              array( 'Properties', rr_anchor( 'properties' ) ),
+              array( 'Contact', rr_anchor( 'contact' ) ),
+            ),
           ),
           'Services'    => array(
-            array( 'Buy Property', rr_anchor( 'services' ) ),
-            array( 'Sell Property', rr_anchor( 'services' ) ),
-            array( 'Rent Property', rr_anchor( 'services' ) ),
-            array( 'Mortgage Guidance', rr_anchor( 'services' ) ),
-            array( 'Golden Visa Guidance', rr_anchor( 'services' ) ),
+            'location' => 'footer_services',
+            'items'    => array(
+              array( 'Buy Property', rr_anchor( 'services' ) ),
+              array( 'Sell Property', rr_anchor( 'services' ) ),
+              array( 'Rent Property', rr_anchor( 'services' ) ),
+              array( 'Mortgage Guidance', rr_anchor( 'services' ) ),
+              array( 'Golden Visa Guidance', rr_anchor( 'services' ) ),
+            ),
           ),
           'Explore'     => array(
-            array( 'Why Invest in Dubai', rr_anchor( 'why-invest' ) ),
-            array( 'Investment Snapshot', rr_anchor( 'snapshot' ) ),
-            array( 'Client Feedback', rr_anchor( 'testimonials' ) ),
-            array( 'FAQs', rr_anchor( 'faq' ) ),
+            'location' => 'footer_explore',
+            'items'    => array(
+              array( 'Why Invest in Dubai', rr_anchor( 'why-invest' ) ),
+              array( 'Investment Snapshot', rr_anchor( 'snapshot' ) ),
+              array( 'Client Feedback', rr_anchor( 'testimonials' ) ),
+              array( 'FAQs', rr_anchor( 'faq' ) ),
+            ),
           ),
         );
 
-        foreach ( $columns as $title => $links ) :
+        foreach ( $columns as $title => $col ) :
             ?>
             <div class="rv">
               <p class="ft__h"><?php echo esc_html( $title ); ?></p>
-              <ul class="ft__list">
-                <?php foreach ( $links as $link ) : ?>
-                  <li><a href="<?php echo esc_url( $link[1] ); ?>"><?php echo esc_html( $link[0] ); ?></a></li>
-                <?php endforeach; ?>
-              </ul>
+              <?php
+              if ( ! empty( $col['location'] ) && has_nav_menu( $col['location'] ) ) {
+                  wp_nav_menu(
+                      array(
+                          'theme_location' => $col['location'],
+                          'container'      => false,
+                          'menu_class'     => 'ft__list',
+                          'fallback_cb'    => false,
+                          'depth'          => 1,
+                      )
+                  );
+              } else {
+                  ?>
+                  <ul class="ft__list">
+                    <?php foreach ( $col['items'] as $link ) : ?>
+                      <li><a href="<?php echo esc_url( $link[1] ); ?>"><?php echo esc_html( $link[0] ); ?></a></li>
+                    <?php endforeach; ?>
+                  </ul>
+                  <?php
+              }
+              ?>
             </div>
             <?php
         endforeach;

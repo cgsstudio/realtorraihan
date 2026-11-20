@@ -32,8 +32,10 @@ add_action(
 
 		register_nav_menus(
 			array(
-				'primary' => __( 'Primary menu (header)', 'realtor-raihan' ),
-				'footer'  => __( 'Footer quick links', 'realtor-raihan' ),
+				'primary'         => __( 'Primary menu (Header & Mobile)', 'realtor-raihan' ),
+				'footer'          => __( 'Footer Quick Links', 'realtor-raihan' ),
+				'footer_services' => __( 'Footer Services Links', 'realtor-raihan' ),
+				'footer_explore'  => __( 'Footer Explore Links', 'realtor-raihan' ),
 			)
 		);
 
@@ -46,17 +48,34 @@ add_action(
  * Fallback header menu: used before the client assigns a menu to the
  * "Primary menu" location, so the site is never without navigation.
  */
-function rr_fallback_menu() {
+function rr_fallback_menu( $index_start = 0 ) {
 	$items = array(
 		array( 'Home', home_url( '/' ) ),
 		array( 'About', rr_link( 'about' ) ),
 		array( 'Blog', rr_blog_url() ),
 		array( 'Contact', rr_contact_url() ),
 	);
-	echo '<a href="' . esc_url( $items[0][1] ) . '"' . ( is_front_page() ? ' aria-current="page"' : '' ) . '>Home</a>';
-	echo '<a href="' . esc_url( $items[1][1] ) . '"' . ( is_page_template( 'page-templates/about.php' ) ? ' aria-current="page"' : '' ) . '>About</a>';
-	echo '<a href="' . esc_url( $items[2][1] ) . '"' . ( ( is_home() || is_singular( 'post' ) ) ? ' aria-current="page"' : '' ) . '>Blog</a>';
-	echo '<a href="' . esc_url( $items[3][1] ) . '"' . ( is_page_template( 'page-templates/contact.php' ) ? ' aria-current="page"' : '' ) . '>Contact</a>';
+	$i = $index_start;
+	foreach ( $items as $item ) {
+		$current = '';
+		if ( 'Home' === $item[0] && is_front_page() ) {
+			$current = ' aria-current="page"';
+		} elseif ( 'About' === $item[0] && is_page_template( 'page-templates/about.php' ) ) {
+			$current = ' aria-current="page"';
+		} elseif ( 'Blog' === $item[0] && ( is_home() || is_singular( 'post' ) ) ) {
+			$current = ' aria-current="page"';
+		} elseif ( 'Contact' === $item[0] && ( is_page_template( 'page-templates/contact.php' ) || is_page( 'contact' ) ) ) {
+			$current = ' aria-current="page"';
+		}
+		printf(
+			'<a href="%1$s" style="--i:%2$d"%3$s>%4$s</a>',
+			esc_url( $item[1] ),
+			(int) $i,
+			$current,
+			esc_html( $item[0] )
+		);
+		$i++;
+	}
 }
 
 /**
@@ -228,22 +247,38 @@ add_action(
  * @param int $index_start First stagger index (the mobile menu continues the count).
  */
 function rr_primary_menu( $index_start = 0 ) {
-	if ( ! has_nav_menu( 'primary' ) ) {
-		rr_fallback_menu();
+	$menu_to_use = null;
+
+	if ( has_nav_menu( 'primary' ) ) {
+		$locations   = get_nav_menu_locations();
+		if ( ! empty( $locations['primary'] ) ) {
+			$menu_to_use = wp_get_nav_menu_object( $locations['primary'] );
+		}
+	}
+
+	// Fallback to the first created menu in Appearance > Menus if none is assigned to 'primary'
+	if ( ! $menu_to_use ) {
+		$menus = wp_get_nav_menus();
+		if ( ! empty( $menus ) ) {
+			$menu_to_use = $menus[0];
+		}
+	}
+
+	if ( ! $menu_to_use ) {
+		rr_fallback_menu( $index_start );
 		return;
 	}
 
-	$locations = get_nav_menu_locations();
-	$args      = (object) array(
+	$items = wp_get_nav_menu_items( $menu_to_use );
+	if ( empty( $items ) ) {
+		rr_fallback_menu( $index_start );
+		return;
+	}
+
+	$args = (object) array(
 		'items_wrap' => '%3$s',
 		'rr_index'   => null,
 	);
-
-	$items = wp_get_nav_menu_items( $locations['primary'] );
-	if ( ! $items ) {
-		rr_fallback_menu();
-		return;
-	}
 
 	$i = $index_start;
 	foreach ( $items as $item ) {

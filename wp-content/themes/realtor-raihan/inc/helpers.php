@@ -56,6 +56,24 @@ function rr_logo_lockup() {
 }
 
 /**
+ * Custom site logo from WordPress site settings (Customize > Site Identity).
+ *
+ * @return string Logo URL or empty string.
+ */
+function rr_custom_logo_url() {
+	if ( function_exists( 'has_custom_logo' ) && has_custom_logo() ) {
+		$logo_id = get_theme_mod( 'custom_logo' );
+		if ( $logo_id ) {
+			$img = wp_get_attachment_image_src( $logo_id, 'full' );
+			if ( $img && ! empty( $img[0] ) ) {
+				return $img[0];
+			}
+		}
+	}
+	return '';
+}
+
+/**
  * A link to a page, falling back to the home page section anchor.
  *
  * @param string $slug Page slug.
